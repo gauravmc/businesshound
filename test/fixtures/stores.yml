@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+apple_store:
+  id: 1
+  name: Apple Store New York
+  company_id: 1
+
+mod_mumbai:
+  id: 2
+  name: MOD Mumbai
+  company_id: 2

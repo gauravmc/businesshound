@@ -1,4 +1,4 @@
-businesshound
+BusinessHound
 =============
 
 Business Intelligence software SMBs

@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+one:
+  id: 1
+  factory_id: 1
+  store_id: 1
+  product_id: 1
+  quantity: 45
+  supplied_on: <%= Date.today %>
+
+zero:
+  id: 2
+  factory_id: 1
+  store_id: 1
+  product_id: 2
+  quantity: 0
+  supplied_on: <%= Date.today %>

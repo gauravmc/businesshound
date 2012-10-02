@@ -1,0 +1,37 @@
+.center {
+	text-align:center;
+	margin-right:auto;
+	margin-left:auto;
+	#canvas {
+		float:none;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+		table {
+			width:500px;
+			th, td {
+				text-align:center;
+			}
+		}
+	}
+	.item {
+		width:200px;
+		height:40px;
+		margin:10px;
+		padding:10px;
+		.btn {
+			width:162px;
+		}
+	}
+}
+
+.add-supplies {
+	.alert-error {
+		margin-left:auto;
+		margin-right:auto;
+		
+		li {
+			list-style-position: inside;
+		}
+	}
+}

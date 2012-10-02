@@ -1,0 +1,23 @@
+<%= render 'admin/sidebar' %>
+<div class="flash-box">
+	<%= render 'layouts/flash', flash: flash %>
+</div>
+<div id="canvas">
+	<% @products.each do |product| %>
+		<div class="shadow-box item">
+			<img />
+			<h4 class="item-name"><%= slice_name(product.name, 17) %></h4>
+			<h5 class="item-description"><%= "#{current_user.company.currency} #{product.price}"%></h5>
+			<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_admin_product_path(product), class: "edit", title: "Edit" %>
+			<%= link_to '<i class="icon-trash"></i>'.html_safe, admin_product_path(product), class: "trash", title: "Delete", method: :delete, confirm: "Are you sure?" %>
+		</div>
+	<% end %>
+</div>
+<div class="span2">
+	<a href="<%= new_admin_product_path %>" id="add-item" title="Add New Product">
+		<div class="shadow-box item-small">
+			<%= image_tag "icons/glyphicons_190_circle_plus.png" %><br/>
+			New Product
+		</div>
+	</a>
+</div>

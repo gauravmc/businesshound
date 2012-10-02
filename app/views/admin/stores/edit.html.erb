@@ -1,0 +1,27 @@
+<div class="span12">
+	<div class="shadow-box add-item-box">
+	<h2>Edit Store</h2><br />
+
+	<% if @store.errors.any? %>
+	  <div class="alert alert-error">
+	    <p>There were problems with the following fields:</p>
+	    <ul>
+	    <% @store.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
+
+	<%= form_for(@store, url: admin_store_path(@store)) do |f| %>	
+		<div>
+	    <%= f.label :name, "Store Name:" %>
+	    <%= f.text_field :name, class: "span4" %>
+	  </div><br />
+	  <div>
+	    <%= f.submit "Update", class: "btn btn-success btn-large" %>
+	  </div>
+	<% end %>
+	</div>
+</div>

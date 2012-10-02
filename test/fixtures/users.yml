@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+steve:
+  id: 1
+  fullname: Steve Jobs
+  email: sjobs@apple.com
+  username: sjobs
+  password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
+  user_type: admin
+  company_id: 1
+  remember_token: <%= SecureRandom.urlsafe_base64 %>
+  
+kevin:
+  id: 2
+  fullname: Kevin Smith
+  email: kevin@madoverdonuts.com
+  username: kevin
+  password_digest: <%= BCrypt::Password.create('sample') %>
+  user_type: admin
+  company_id: 2
+  remember_token: <%= SecureRandom.urlsafe_base64 %>
+  
+apple_factory_manager:
+  id: 3
+  fullname:
+  email:
+  username: apple_factory
+  password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
+  user_type: factory
+  company_id: 1
+  remember_token: <%= SecureRandom.urlsafe_base64 %>
+
+mod_factory_manager:
+  id: 4
+  fullname:
+  email:
+  username: mod_factory
+  password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
+  user_type: factory
+  company_id: 2
+  remember_token: <%= SecureRandom.urlsafe_base64 %>

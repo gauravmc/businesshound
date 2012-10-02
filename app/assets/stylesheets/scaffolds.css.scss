@@ -1,0 +1,67 @@
+body {
+	background: #e3e3e3;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+p, ol, ul, td {
+  font-size: 13px;
+  line-height: 18px; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px; }
+
+a {
+  color: #666;
+	cursor:pointer;
+	&:hover {
+		color: #666;
+	}
+}
+
+.shadow-box {
+	background: #fff;
+	padding: 20px;
+	border: 1px solid #c0c0c0;
+	-webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	border-radius: 0.5em;
+	filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+.add-item-box, #login-box {
+	margin:100px auto 0px;
+	padding-bottom:0px;
+	width:350px;
+	text-align:center;
+	label {
+		text-align:left;
+		margin-left:26px;
+	}
+	#checkbox-container {
+		margin-top:10px;
+	}
+}
+
+.alert-error {
+	max-width:400px;
+}
+
+.add-item-box .alert-error {
+	text-align:left;
+}
+
+#price-prepend {
+	margin-left:25px;
+	.add-on {
+		color: #666;
+	}
+	input {
+		width:262px;
+	}
+}

@@ -1,0 +1,51 @@
+<div class="span12">
+	<div id="add-store-box" class="shadow-box add-item-box">
+	<h2>Add Store</h2><br />
+
+	<% if @store.errors.any? or @user.errors.any? %>
+	  <div class="alert alert-error">
+	    <p>There were problems with the following fields:</p>
+	    <ul>
+	    <% @store.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    <% @user.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
+	<%= form_for(@store, url: admin_stores_path) do |f| %>	
+		<div>
+	    <%= f.label :name, "Store Name:" %>
+	    <%= f.text_field :name, class: "span4" %>
+	  </div>
+		<%= fields_for @user do |f| %>
+			<div>
+		    <%= f.label :fullname, "Manager Name", class: "control-label" %>
+		    <%= f.text_field :fullname, class: "span4" %>
+		  </div>
+			<div>
+		    <%= f.label :email, "Manager Email",class: "control-label" %>
+		    <%= f.text_field :email, class: "span4" %>
+		  </div>
+			<div>
+		    <%= f.label :username, "Username", class: "control-label" %>
+		    <%= f.text_field :username, class: "span4" %>
+		  </div>
+			<div>
+			  <%= f.label :password, class: "control-label" %>
+			  <%= f.password_field :password, class: "span4" %>
+			</div>
+			<div>
+			  <%= f.label :password_confirmation, "Confirmation", class: "control-label" %>
+			  <%= f.password_field :password_confirmation, class: "span4" %>
+			</div>
+		<% end %>
+	  <div>
+	    <%= f.submit "Add", class: "btn btn-success btn-large" %>
+	  </div>
+	<% end %>
+	</div>
+</div>

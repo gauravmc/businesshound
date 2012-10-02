@@ -1,0 +1,70 @@
+// Place all the styles related to the Admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div#canvas {
+	float:left;
+	min-width:165px;
+	max-width:740px;
+	margin-left:10px;
+}
+
+div.item {
+	width:140px;
+	height:140px;
+	margin:0 10px 20px 10px;
+	text-align:center;
+	vertical-align:top;
+	display:inline-block;
+	padding:10px;
+	
+	img {
+		display:block;
+		width:140px;
+		height:80px;
+		background:#f0f0f0;
+		margin-bottom:3px;
+	}
+	a.edit {
+		float:left;
+		width:10px;
+	}
+	a.trash {
+		float:right;
+		width:10px;
+	}
+	.item-name {
+		margin-top:5px;
+		margin-bottom:3px;
+	}
+	.item-description {
+		margin-bottom:5px;
+	}
+	h1,h2,h3,h4,h5,h6,p {
+		color:#555;
+	}
+}
+
+div.item-small {
+	padding: 10px 0 10px 0;
+	width:100px;
+	height:45px;
+	margin:0 10px 20px 0;
+	text-align:center;
+	vertical-align:top;
+	display:inline-block;
+}
+
+div.flash-box {
+	float:left;
+	width:900px;
+	
+	.alert {
+		margin:0 0 20px 20px;
+		width:500px;
+		padding-right:0px;
+		-webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+		-moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+		box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+		filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	}
+}

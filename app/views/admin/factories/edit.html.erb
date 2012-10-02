@@ -1,0 +1,40 @@
+<div class="span12">
+	<div class="shadow-box add-item-box">
+	<h2>Edit Factory</h2><br />
+
+	<% if @factory.errors.any? %>
+	  <div class="alert alert-error">
+	    <p>There were problems with the following fields:</p>
+	    <ul>
+	    <% @factory.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
+
+	<%= form_for(@factory, url: admin_factory_path(@factory)) do |f| %>	
+		<div>
+	    <%= f.label :name, "Factory Name:" %>
+	    <%= f.text_field :name, class: "span4" %>
+	  </div><br />
+		<div>
+	    <u><%= label_tag "Select stores for supply" %></u>
+			<% current_company.stores.each do |store| %>
+				<div>
+					<%= label_tag store.name.parameterize.underscore,
+												check_box_tag("factory[stores][]",
+																			store.name,
+																			@factory.supplies_to(store) ? true : false,
+																			id: store.name.parameterize.underscore) + store.name,
+												class: "checkbox" %>
+			  </div>
+			<% end %>
+		</div>
+	  <div>
+	    <%= f.submit "Update", class: "btn btn-success btn-large" %>
+	  </div>
+	<% end %>
+	</div>
+</div>

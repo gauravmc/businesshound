@@ -1,0 +1,29 @@
+<div class="span12">
+	<div id="login-box" class="shadow-box">
+	<h2>Sign In</h2><br />
+
+	<%= render 'layouts/flash', flash: flash %>
+
+	<%= form_tag do %>
+		<div>
+	    <%= label_tag :username, 'Username or Email:' %>
+	    <%= text_field_tag :username, params[:username], class: "span4" %>
+	  </div>
+
+	  <div>
+	    <%= label_tag :password, 'Password:' %>
+	    <%= password_field_tag :password, params[:password], class: "span4" %>
+	  </div>
+
+		<div id="checkbox-container">
+			<%= label_tag :remember, check_box_tag(:remember, 'yes', true) + 'Remember me on this computer', class: "checkbox" %>
+	  </div>
+		<br />
+
+	  <div>
+	    <%= submit_tag "Login", class: "btn btn-success btn-large" %>
+	  </div>
+	<% end %>
+
+	</div>
+</div>

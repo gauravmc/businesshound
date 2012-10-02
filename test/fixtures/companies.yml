@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+apple:
+  id: 1
+  name: Apple
+  business_type: 1
+  currency: $
+
+mod:
+  id: 2
+  name: Mad Over Donuts
+  business_type: 2
+  currency: ₹

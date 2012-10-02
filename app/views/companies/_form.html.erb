@@ -1,0 +1,69 @@
+<% if @company.errors.any? or @user.errors.any? %>
+  <div class="alert alert-error">
+    <p>There were problems with the following fields:</p>
+    <ul>
+    <% @company.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for(@company, html: {class: "form-horizontal"}) do |f| %>	
+	<div class="control-group">
+    <%= f.label :name, "Company Name", class: "control-label" %>
+    <div class="controls">
+    	<%= f.text_field :name %>
+		</div>
+  </div>
+  <div class="control-group">
+    <%= f.label :business_type, "Business Type", class: "control-label" %>
+    <div class="controls">
+    	<%= f.select :business_type, {"Business Type"=>"", "Manufacture in Factory"=>1, "Manufacture/Purchase in Store"=>2 } %>
+		</div>
+  </div>
+	<div class="control-group">
+    <%= f.label :currency, "Currency Symbol", class: "control-label" %>
+    <div class="controls">
+    	<%= f.select :currency, {"₹"=>"₹","$"=>"$","€"=>"€","£"=>"£"} %>
+		</div>
+  </div>
+	<%= fields_for @user do |f| %>
+	  <div class="control-group">
+	    <%= f.label :fullname, "Full Name", class: "control-label" %>
+	    <div class="controls">
+	    	<%= f.text_field :fullname %>
+			</div>
+	  </div>
+	  <div class="control-group">
+	    <%= f.label :email, "Email",class: "control-label" %>
+	    <div class="controls">
+	    	<%= f.text_field :email %>
+			</div>
+	  </div>
+		<div class="control-group">
+	    <%= f.label :username, "Username", class: "control-label" %>
+	    <div class="controls">
+	    	<%= f.text_field :username %>
+			</div>
+	  </div>
+		<div class="control-group">
+		  <%= f.label :password, class: "control-label" %>
+	    <div class="controls">
+		  	<%= f.password_field :password %>
+			</div>
+		</div>
+		<div class="control-group">
+		  <%= f.label :password_confirmation, "Confirmation", class: "control-label" %>
+	    <div class="controls">
+		  	<%= f.password_field :password_confirmation %>
+			</div>
+		</div>
+	<% end %>
+  <div class="form-actions">
+    <%= f.submit "Sign Up", class: "btn btn-primary btn-large" %>
+  </div>
+<% end %>

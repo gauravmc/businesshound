@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BusinessHound</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Business Hound", root_url, class: "brand" unless logged_in? %>
+      <div class="nav-collapse">
+        <ul id="navigation" class="nav black">
+          <li><%= link_to '<i class="icon-home icon-white"></i> Home'.html_safe, user_home %></li>
+        </ul>
+        <ul class="nav pull-right">
+          <%= link_to '<i class="icon-off"></i> Log In'.html_safe, login_path, class: "btn" unless logged_in? %>
+          <%= link_to '<i class="icon-off"></i> Log Out'.html_safe, logout_path, method: :delete, class: "btn" if logged_in? %>
+        </ul>
+      </div><!-- /.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+	<div class="row-fluid content">
+			<%= yield %>
+  </div>
+</div>
+
+</body>
+</html>

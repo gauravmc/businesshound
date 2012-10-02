@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+apple_factory:
+  id: 1
+  name: Apple Factory
+  manager_id: 3
+  company_id: 1
+
+mod_factory:
+  id: 2
+  name: MOD
+  manager_id: 4
+  company_id: 2

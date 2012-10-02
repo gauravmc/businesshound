@@ -1,0 +1,36 @@
+<div class="center">
+	<div id="canvas" class="shadow-box add-supplies">
+		<h1><%= @store.name %></h1><br/>
+		<% if @factory.errors.any? %>
+		  <div class="alert alert-error">
+		    <p>There were problems with the following fields:</p>
+		    <ul>
+		    <% @factory.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		    </ul>
+		  </div>
+		<% end %>
+		<table align="center" class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>Product Name</th>
+		      <th>Quantity</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+				<%= form_for @factory, url: factory_supplies_path(store_id: @store.id), method: :post do |f| %>
+					<% @supplies.each.with_index do |supply, index| %>
+				    <tr>
+				      <td><%= @factory.products[index].name %></td>
+							<%= f.fields_for :supplies, supply do |builder| %>
+				      <td><%= builder.text_field :quantity, class: "span2" %></td>
+							<% end %>
+				    </tr>
+					<% end %>
+		  </tbody>
+		</table>
+		<%= submit_tag "Add Supplies", class: "btn btn-success btn-large" %>
+		<% end %>
+	</div>
+</div>

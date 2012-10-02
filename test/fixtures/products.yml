@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+iphone:
+  id: 1
+  name: iPhone
+  price: 599.99
+  company_id: 1
+
+ipad:
+  id: 2
+  name: iPad
+  price: 499
+  company_id: 1
+  
+donut:
+  id: 3
+  name: Donut
+  price: 40.49
+  company_id: 2
+  
+coffee:
+  id: 4
+  name: Coffee
+  price: 40
+  company_id: 2
