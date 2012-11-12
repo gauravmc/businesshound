@@ -4,7 +4,6 @@
 
 	<% if @store.errors.any? or @user.errors.any? %>
 	  <div class="alert alert-error">
-	    <p>There were problems with the following fields:</p>
 	    <ul>
 	    <% @store.errors.full_messages.each do |msg| %>
 	      <li><%= msg %></li>

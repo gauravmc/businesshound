@@ -4,7 +4,6 @@ class CompaniesControllerTest < ActionController::TestCase
   setup do
     @company_attributes = {
       name: 'Sample Company',
-      business_type: 1,
       currency: 'Rs.',
     }
     

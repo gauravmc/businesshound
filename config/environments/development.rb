@@ -18,6 +18,7 @@ Businesshound::Application.configure do
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
+  config.middleware.insert_before Rails::Rack::Logger, DisableAssetsLogger
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
@@ -33,5 +34,5 @@ Businesshound::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
 end

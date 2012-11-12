@@ -3,7 +3,6 @@ class Company < ActiveRecord::Base
   @@creating_new = false
     
   validates :name, :currency, presence: { message: "is required" }
-  validates :business_type, inclusion: { in: %w(1 2), message: "must be selected" }
   
   has_many :users, dependent: :destroy
   has_many :products, dependent: :destroy

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   protected
 
-    def authorize
-      redirect_to login_url, notice: "Please log in first" unless logged_in?
-    end
+  def authorize
+    redirect_to login_url, notice: "Please log in first" unless logged_in?
+  end
 end

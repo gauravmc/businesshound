@@ -4,6 +4,7 @@ class Factory < ActiveRecord::Base
   validates_presence_of :stores, message: "Select at least one store for supply"
   
   belongs_to :company
+  belongs_to :manager, class_name: 'User'
   has_many :products, through: :company
   has_many :supplies, dependent: :destroy
   has_and_belongs_to_many :stores, autosave: true

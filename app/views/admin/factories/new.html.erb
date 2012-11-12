@@ -4,7 +4,6 @@
 
 	<% if @factory.errors.any? or @user.errors.any? %>
 	  <div class="alert alert-error">
-	    <p>There were problems with the following fields:</p>
 	    <ul>
 	    <% @factory.errors.each do |field, msg| %>
 	      <li><%= msg %></li>

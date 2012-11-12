@@ -12,7 +12,7 @@ Store.delete_all
 Factory.delete_all
 ActiveRecord::Base.connection.execute("DELETE FROM factories_stores")
 
-company = Company.create(name: 'Jai Jalaram Soap Industry', business_type: "1", currency: "$")
+company = Company.create(name: 'Jai Jalaram Food Products', currency: "Rs.")
   
 User.create(fullname: 'Gaurav Chande',
             email: 'gmail@gauravchande.com',
@@ -20,42 +20,42 @@ User.create(fullname: 'Gaurav Chande',
             password: '7sjy1bss',
             password_confirmation: '7sjy1bss',
             user_type: 'admin',
-            company_id: company.id)
+            company: company)
 
-Product.create(name: 'Shakti Soap',
-              price: 40.50,
-              company_id: company.id)
+Product.create(name: 'Khari 400g',
+              price: 50.00,
+              company: company)
 
-Product.create(name: 'Dawn Soap',
-              price: 22.25,
-              company_id: company.id)
+Product.create(name: 'Toast 200g',
+              price: 30.00,
+              company: company)
   
-Product.create(name: 'Toofan Soap',
-              price: 30,
-              company_id: company.id)
+Product.create(name: 'Fruit Biscuit',
+              price: 30.00,
+              company: company)
     
-user = User.create(fullname: 'Some Guy',
-                  email: 'gmail@gmail.com',
-                  username: 'bengalchokey',
-                  password: '7sjy1bss',
-                  password_confirmation: '7sjy1bss',
+user = User.create(fullname: 'Lala',
+                  email: 'lala@gmail.com',
+                  username: 'lala',
+                  password: 'lala123',
+                  password_confirmation: 'lala123',
                   user_type: 'store',
-                  company_id: company.id)
+                  company: company)
 
 store = Store.create(name: 'Bengal Chokey Store',
-                    company_id: company.id,
-                    manager_id: user.id)
+                    company: company,
+                    manager: user)
     
-user = User.create(fullname: 'Some Other Guy',
-                  email: 'gmail@yahoo.com',
-                  username: 'sakat',
-                  password: '7sjy1bss',
-                  password_confirmation: '7sjy1bss',
+user = User.create(fullname: 'Munna',
+                  email: 'munna@yahoo.com',
+                  username: 'munna',
+                  password: 'munna123',
+                  password_confirmation: 'munna123',
                   user_type: 'factory',
-                  company_id: company.id)
+                  company: company)
                   
-Factory.create(name: 'Sakat Factory',
-              company_id: company.id,
-              manager_id: user.id,
+Factory.create(name: 'Industrial Estate Factory',
+              company: company,
+              manager: user,
               stores: [store])
 

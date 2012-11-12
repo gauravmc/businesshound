@@ -1,6 +1,5 @@
 <% if @company.errors.any? or @user.errors.any? %>
   <div class="alert alert-error">
-    <p>There were problems with the following fields:</p>
     <ul>
     <% @company.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -17,12 +16,6 @@
     <%= f.label :name, "Company Name", class: "control-label" %>
     <div class="controls">
     	<%= f.text_field :name %>
-		</div>
-  </div>
-  <div class="control-group">
-    <%= f.label :business_type, "Business Type", class: "control-label" %>
-    <div class="controls">
-    	<%= f.select :business_type, {"Business Type"=>"", "Manufacture in Factory"=>1, "Manufacture/Purchase in Store"=>2 } %>
 		</div>
   </div>
 	<div class="control-group">

@@ -3,7 +3,6 @@
 		<h1><%= @store.name %></h1><br/>
 		<% if @factory.errors.any? %>
 		  <div class="alert alert-error">
-		    <p>There were problems with the following fields:</p>
 		    <ul>
 		    <% @factory.errors.full_messages.each do |msg| %>
 		      <li><%= msg %></li>
