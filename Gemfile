@@ -5,6 +5,8 @@ gem 'bcrypt-ruby'
 gem 'carmen'
 gem 'capistrano'
 gem 'mysql2'
+gem 'debugger'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,4 +20,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+group :production do
+	gem 'pg'
+end
