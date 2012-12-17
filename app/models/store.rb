@@ -7,6 +7,4 @@ class Store < ActiveRecord::Base
   has_many :products, through: :company
   has_and_belongs_to_many :factories, autosave: true
   has_many :supplies
-  
-  accepts_nested_attributes_for :supplies
 end

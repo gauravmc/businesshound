@@ -5,8 +5,12 @@ gem 'bcrypt-ruby'
 gem 'carmen'
 gem 'capistrano'
 gem 'mysql2'
-gem 'debugger'
 gem 'jquery-rails'
+gem 'less-rails-bootstrap'
+
+group :development do
+	gem 'debugger'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

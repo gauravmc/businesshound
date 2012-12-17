@@ -11,7 +11,7 @@ class Factory < ActiveRecord::Base
   
   accepts_nested_attributes_for :supplies
   
-  def supplies_to(store)
+  def supplies_to?(store)
     stores.include? store
   end
 end

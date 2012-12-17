@@ -25,7 +25,7 @@
 					<%= label_tag store.name.parameterize.underscore,
 												check_box_tag("factory[stores][]",
 																			store.name,
-																			@factory.supplies_to(store) ? true : false,
+																			@factory.supplies_to?(store) ? true : false,
 																			id: store.name.parameterize.underscore) + store.name,
 												class: "checkbox" %>
 			  </div>
