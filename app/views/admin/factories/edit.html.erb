@@ -16,8 +16,8 @@
 	<%= form_for(@factory, url: admin_factory_path(@factory)) do |f| %>	
 		<div>
 	    <%= f.label :name, "Factory Name:" %>
-	    <%= f.text_field :name, class: "span4" %>
-	  </div><br />
+	    <%= f.text_field :name, class: "input-block-level" %>
+	  </div>
 		<div>
 	    <u><%= label_tag "Select stores for supply" %></u>
 			<% current_company.stores.each do |store| %>
@@ -30,7 +30,7 @@
 												class: "checkbox" %>
 			  </div>
 			<% end %>
-		</div>
+		</div><br />
 	  <div>
 	    <%= f.submit "Update", class: "btn btn-success btn-large" %>
 	  </div>

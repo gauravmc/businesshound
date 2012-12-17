@@ -1,12 +1,12 @@
-<div class="center">
-	<div id="canvas" class="shadow-box">
+<div class="span12 center">
+	<div id="canvas" class="shadow-box span8">
 	<h1>Select a store</h1><br/>
 	<%= render 'layouts/flash', flash: flash %>
 	<% @factory.stores.each do |store| %>
 		<div class="item">
 			<%= link_to '<i class="icon-white icon-shopping-cart"></i> '.html_safe + slice_name(store.name, 20),
 										get_factory_supply_path(store),
-										class: "btn btn-large btn-info" %>
+										class: "btn btn-large btn-success" %>
 		</div>
 	<% end %>
 	</div>

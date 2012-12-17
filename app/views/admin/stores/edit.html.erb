@@ -16,7 +16,7 @@
 	<%= form_for(@store, url: admin_store_path(@store)) do |f| %>	
 		<div>
 	    <%= f.label :name, "Store Name:" %>
-	    <%= f.text_field :name, class: "span4" %>
+	    <%= f.text_field :name, class: "input-block-level" %>
 	  </div><br />
 	  <div>
 	    <%= f.submit "Update", class: "btn btn-success btn-large" %>

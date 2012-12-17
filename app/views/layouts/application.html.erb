@@ -8,26 +8,33 @@
 </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "BusinessHound", root_url, class: "brand" %>
-      <div class="nav-collapse">
-        <ul id="navigation" class="nav black">
-          <li><%= link_to '<i class="icon-home icon-white"></i> Home'.html_safe, user_home %></li>
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to "BusinessHound", root_url, class: 'brand' %>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right login-button">
+          <%= link_to '<i class="icon-off icon-white"></i> Log In'.html_safe, login_path, class: 'btn' unless logged_in? %>
+          <%= link_to '<i class="icon-off icon-white"></i> Log Out'.html_safe, logout_path, method: :delete, class: 'btn' if logged_in? %>
+        </p>
+        <ul class="nav">
+          <li class="active"><%= link_to '<i class="icon-home icon-white"></i> Home'.html_safe, user_home %></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <ul class="nav pull-right">
-          <%= link_to '<i class="icon-off"></i> Log In'.html_safe, login_path, class: "btn" unless logged_in? %>
-          <%= link_to '<i class="icon-off"></i> Log Out'.html_safe, logout_path, method: :delete, class: "btn" if logged_in? %>
-        </ul>
-      </div><!-- /.nav-collapse -->
+      </div><!--/.nav-collapse -->
     </div>
   </div>
 </div>
 
 <div class="container-fluid">
 	<div class="row-fluid content">
-			<%= yield %>
+		<%= yield %>
   </div>
 </div>
 

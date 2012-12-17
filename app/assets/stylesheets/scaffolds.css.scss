@@ -6,7 +6,8 @@ body {
 
 p, ol, ul, td {
   font-size: 13px;
-  line-height: 18px; }
+  line-height: 18px;
+}
 
 pre {
   background-color: #eee;
@@ -41,11 +42,17 @@ a {
 	text-align:center;
 	label {
 		text-align:left;
-		margin-left:26px;
 	}
-	#checkbox-container {
-		margin-top:10px;
-	}
+	.form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-signin input[type="text"],
+  .form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+  }
 }
 
 .alert-error {
@@ -57,11 +64,10 @@ a {
 }
 
 #price-prepend {
-	margin-left:25px;
 	.add-on {
 		color: #666;
 	}
 	input {
-		width:262px;
+		width:309px;
 	}
 }

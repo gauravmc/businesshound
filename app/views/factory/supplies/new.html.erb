@@ -1,5 +1,5 @@
-<div class="center">
-	<div id="canvas" class="shadow-box add-supplies">
+<div class="span12 center">
+	<div id="canvas" class="shadow-box add-supplies span8">
 		<h1><%= @store.name %></h1><br/>
 		<% if @factory.errors.any? %>
 		  <div class="alert alert-error">
@@ -23,7 +23,7 @@
 				    <tr>
 				      <td><%= @factory.products[index].name %></td>
 							<%= f.fields_for :supplies, supply do |builder| %>
-				      <td><%= builder.text_field :quantity, class: "span2" %></td>
+				      <td><%= builder.text_field :quantity, class: "input-small" %></td>
 							<% end %>
 				    </tr>
 					<% end %>

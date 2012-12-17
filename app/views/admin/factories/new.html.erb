@@ -18,28 +18,28 @@
 	<%= form_for(@factory, url: admin_factories_path) do |f| %>	
 		<div>
 	    <%= f.label :name, "Factory Name" %>
-	    <%= f.text_field :name, class: "span4" %>
+	    <%= f.text_field :name, class: "input-xlarge" %>
 	  </div>
 		<%= fields_for @user do |f| %>
 			<div>
 		    <%= f.label :fullname, "Manager Name" %>
-		    <%= f.text_field :fullname, class: "span4" %>
+		    <%= f.text_field :fullname, class: "input-xlarge" %>
 		  </div>
 			<div>
 		    <%= f.label :email, "Manager Email",class: "control-label" %>
-		    <%= f.text_field :email, class: "span4" %>
+		    <%= f.text_field :email, class: "input-xlarge" %>
 		  </div>
 			<div>
 		    <%= f.label :username, "Username" %>
-		    <%= f.text_field :username, class: "span4" %>
+		    <%= f.text_field :username, class: "input-xlarge" %>
 		  </div>
 			<div>
 			  <%= f.label :password %>
-			  <%= f.password_field :password, class: "span4" %>
+			  <%= f.password_field :password, class: "input-xlarge" %>
 			</div>
 			<div>
 			  <%= f.label :password_confirmation, "Confirmation" %>
-			  <%= f.password_field :password_confirmation, class: "span4" %>
+			  <%= f.password_field :password_confirmation, class: "input-xlarge" %>
 			</div>
 		<% end %>
 		<div>

@@ -9,14 +9,13 @@
 <% end %>
 
 
-<%= form_for(@product,
-						url: @product.new_record? ? admin_products_path : admin_product_path(@product)) do |f| %>	
+<%= form_for(@product, url: @product.new_record? ? admin_products_path : admin_product_path(@product)) do |f| %>	
 	<div>
-    <%= f.label :name, "Product Name:" %>
-    <%= f.text_field :name, class: "span4" %>
+    <%= f.label :name, "Product Name" %>
+    <%= f.text_field :name, class: 'input-block-level' %>
   </div>
 	<div>
-    <%= f.label :price, "Price:" %>
+    <%= f.label :price, "Price" %>
     <div id="price-prepend" class="input-prepend" align="left">
     	<span class="add-on"><%= current_company.currency %></span><%= f.text_field :price %>
 		</div>
