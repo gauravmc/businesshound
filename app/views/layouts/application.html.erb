@@ -23,7 +23,7 @@
           <%= link_to '<i class="icon-off icon-white"></i> Log Out'.html_safe, logout_path, method: :delete, class: 'btn' if logged_in? %>
         </p>
         <ul class="nav">
-          <li class="active"><%= link_to '<i class="icon-home icon-white"></i> Home'.html_safe, user_home %></li>
+          <li class="active"><%= link_to 'Home', user_home %></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
