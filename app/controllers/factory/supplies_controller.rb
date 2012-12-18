@@ -9,7 +9,7 @@ class Factory::SuppliesController < ApplicationController
     @supplies = []
     @store = Store.find(params[:store_id])
     @supplied_on = Time.now.strftime("%Y-%m-%d")
-    @factory.products.count.times { @supplies << @factory.supplies.build }
+    @factory.products.each { |product| @supplies << @factory.supplies.build(product: product) }
   end
     
   def create

@@ -18,7 +18,7 @@
 	  <tbody>
 			<% @supplies.each.with_index do |supply, index| %>
 		    <tr>
-		      <td><%= @factory.products[index].name %></td>
+		      <td><%= supply.product.name %></td>
 					<%= f.fields_for :supplies, supply do |builder| %>
 			      <td><%= builder.text_field :quantity, class: "input-small" %></td>
 					<% end %>
