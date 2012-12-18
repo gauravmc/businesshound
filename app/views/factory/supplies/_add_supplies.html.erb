@@ -1,0 +1,32 @@
+<div class="span12 center">
+	<div id="canvas" class="shadow-box add-supplies span8">
+		<h1><%= @store.name %></h1><br/>
+		<div class="input-append date" id="datepicker" data-date="<%= @supplied_on %>" data-date-format="yyyy-mm-dd">
+      <input size="16" type="text" value="<%= @supplied_on %>" class="input-small" readonly>
+      <span class="add-on"><i class="icon-calendar"></i></span>
+    </div>
+
+    <div id="supplies-form">
+			<%= render 'form', form_options: form_options, supplied_on: @supplied_on %>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#datepicker').datepicker().on('changeDate', function(e){
+			var date = new Date(e.date.valueOf());
+			var supplied_on = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+			$('#supplied-on').val(supplied_on);
+
+			$.ajax({
+				url: '/factory/supplies/fetch_form?store_id=<%= @store.id %>&amp;date=' + supplied_on,
+				success: function(data) {
+					$('#supplies-form').html(data);
+				}
+			});
+
+			$('#datepicker').datepicker('hide');
+		});
+	});
+</script>

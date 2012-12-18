@@ -1,4 +1,4 @@
-class Admin::FactoriesController < ApplicationController  
+class Admin::FactoriesController < Admin::AdminController  
   def index
     @factories = Factory.where("company_id = #{current_company.id}").all(order: :created_at)
   end
@@ -47,10 +47,4 @@ class Admin::FactoriesController < ApplicationController
       format.html { redirect_to admin_factories_path }
     end
   end
-  
-  protected
-
-    def authorize
-      render nothing: true unless logged_in_as_admin?
-    end
 end

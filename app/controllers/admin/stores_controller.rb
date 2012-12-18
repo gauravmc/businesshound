@@ -1,4 +1,4 @@
-class Admin::StoresController < ApplicationController  
+class Admin::StoresController < Admin::AdminController  
   def index
     @stores = Store.where("company_id = #{current_company.id}").all(order: :created_at)
   end
@@ -42,10 +42,4 @@ class Admin::StoresController < ApplicationController
       format.html { redirect_to admin_stores_path }
     end
   end
-  
-  protected
-
-    def authorize
-      render nothing: true unless logged_in_as_admin?
-    end
 end

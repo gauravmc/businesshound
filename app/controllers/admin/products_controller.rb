@@ -1,4 +1,4 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < Admin::AdminController
   def index
     @products = Product.where("company_id = #{current_company.id}").all(order: :created_at)
   end
@@ -39,10 +39,4 @@ class Admin::ProductsController < ApplicationController
       format.js
     end
   end
-
-  protected
-
-    def authorize
-      render nothing: true unless logged_in_as_admin?
-    end  
 end

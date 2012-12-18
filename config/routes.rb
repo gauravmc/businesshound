@@ -16,7 +16,11 @@ Businesshound::Application.routes.draw do
   resources :companies
   
   namespace :factory do
-    resources :supplies
+    resources :supplies do
+      collection do
+        get :fetch_form
+      end
+    end
   end
   
   namespace :admin do

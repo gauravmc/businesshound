@@ -13,7 +13,7 @@ module SessionsHelper
     session.delete :user_id
   end
   
-  def logged_in_as_factory_guy?
+  def logged_in_as_factory_manager?
     !current_user.nil? && current_user.user_type == 'factory'
   end
   
@@ -42,12 +42,12 @@ module SessionsHelper
   
   private
 
-    def user_from_remember_token
-      remember_token = cookies[:remember_token]
-      User.find_by_remember_token(remember_token) unless remember_token.nil?
-    end
-    
-    def user_from_session
-      User.find_by_id(session[:user_id])
-    end
+  def user_from_remember_token
+    remember_token = cookies[:remember_token]
+    User.find_by_remember_token(remember_token) unless remember_token.nil?
+  end
+  
+  def user_from_session
+    User.find_by_id(session[:user_id])
+  end
 end

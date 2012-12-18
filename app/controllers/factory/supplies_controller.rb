@@ -1,44 +1,47 @@
-class Factory::SuppliesController < ApplicationController  
+class Factory::SuppliesController < ApplicationController
+  before_filter :authorize_user_type, :load_factory
+  layout false, only: :fetch_form
+
   def index
-    @factory = current_user.factory
   end
   
   def new
     @supplies = []
-    @factory = current_user.factory
     @store = Store.find(params[:store_id])
+    @supplied_on = Time.now.strftime("%Y-%m-%d")
     @factory.products.count.times { @supplies << @factory.supplies.build }
   end
     
   def create
     @supplies = []
-    @factory = current_user.factory
     @store = Store.find(params[:store_id])
+    @supplied_on = params[:factory][:supplied_on]
     
     params[:factory][:supplies_attributes].each_value.with_index do |attributes, index|
       @supplies << @factory.supplies.build(store_id: @store.id,
-                              product_id: @store.products[index].id,
-                              quantity: make_validation_friendly(attributes[:quantity]),
-                              supplied_on: Date.today)
+        product_id: @store.products[index].id,
+        quantity: make_validation_friendly(attributes[:quantity]),
+        supplied_on: @supplied_on
+      )
     end
-        
+    
     if @factory.save
       redirect_to factory_supplies_path, flash: {success: "Supply items were added for #{@store.name}"}
     else
-      render "new"
+      render 'new'
     end
   end
   
   def edit
-    @factory = current_user.factory
     @store = Store.find(params[:id])
-    @supplies = @factory.supplies.where(store_id: @store.id, supplied_on: Date.today)
+    @supplied_on = Time.now.strftime("%Y-%m-%d")
+    @supplies = @factory.supplies.where(store_id: params[:id], supplied_on: Date.today)
   end
   
   def update
-    @factory = current_user.factory
     @store = Store.find(params[:id])
-    @supplies = @factory.supplies.where(store_id: @store.id, supplied_on: Date.today)
+    @supplied_on = params[:factory][:supplied_on]
+    @supplies = @factory.supplies.where(store_id: @store.id, supplied_on: @supplied_on)
     supplies_enum = params[:factory][:supplies_attributes].to_enum
     
     @supplies.each do |supply|
@@ -51,13 +54,30 @@ class Factory::SuppliesController < ApplicationController
     unless @factory.errors.any?
       redirect_to factory_supplies_path, flash: {success: "Supply items were added for #{@store.name}"}
     else
-      render "edit"
+      render 'edit'
     end
   end
-  
+
+  def fetch_form
+    @supplied_on = params[:date]
+    @supplies = @factory.supplies.where(store_id: params[:store_id], supplied_on: params[:date]) || []
+    if @supplies.empty?
+      @factory.products.count.times { @supplies << @factory.supplies.build }
+      @form_options = { url: factory_supplies_path(store_id: params[:store_id]), method: :post }
+    else
+      @form_options = { url: factory_supply_path(params[:store_id]), method: :put }
+    end
+  end
+
   protected
 
-    def authorize
-      render nothing: true unless logged_in_as_factory_guy?
-    end
+  def authorize_user_type
+    render file: 'public/401.html', status: :unauthorized unless logged_in_as_factory_manager?
+  end
+
+  private
+
+  def load_factory
+    @factory = current_user.factory
+  end
 end
