@@ -37,7 +37,7 @@ class Admin::StoresController < Admin::AdminController
   
   def destroy
     Store.find(params[:id]).destroy
-    flash[:success] = "Store destroyed."
+    flash[:success] = "Store successfully deleted."
     respond_to do |format|
       format.html { redirect_to admin_stores_path }
     end

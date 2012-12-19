@@ -42,7 +42,7 @@ class Admin::FactoriesController < Admin::AdminController
   
   def destroy
     Factory.find(params[:id]).destroy
-    flash[:success] = "Factory destroyed."
+    flash[:success] = "Factory successfully deleted."
     respond_to do |format|
       format.html { redirect_to admin_factories_path }
     end

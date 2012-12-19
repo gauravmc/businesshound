@@ -1,57 +1,16 @@
 // Place all the styles related to the Admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div.canvas {
-	min-width:165px;
-	max-width:740px;
-}
+div#canvas {
+	min-height:600px;
+	margin-bottom:20px;
 
-div.item {
-	width:140px;
-	height:140px;
-	margin:0 20px 20px 0;
-	text-align:center;
-	vertical-align:top;
-	display:inline-block;
-	padding:10px;
-	
-	img {
-		display:block;
-		width:140px;
-		height:80px;
-		background:#f0f0f0;
-	}
-	a.edit {
-		float:left;
-	}
-	a.trash {
-		float:right;
-		width:8px;
-	}
-	.item-name {
-		font-weight:bold;
-		font-size:16px;
-		margin-top:8px;
-		margin-bottom:0px;
-	}
-	.item-description {
-		margin-top:3px;
-		margin-bottom:3px;
-		font-size:14px;
-	}
-	h1,h2,h3,h4,h5,h6,p {
-		color:#555;
-	}
-}
-
-div.flash-box {
-	.alert {
-		margin:0 0 20px 0;
-		width:500px;
-		padding-right:0px;
-		-webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
-		-moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
-		box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
-		filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	table{
+		img {
+			display:inline-block;
+			width:60px;
+			height:40px;
+			background:#f0f0f0;
+		}
 	}
 }

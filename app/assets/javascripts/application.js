@@ -16,8 +16,8 @@
 //= require_tree .
 
 $(document).ready(function(){
-	$('a.edit, a.trash').tooltip({placement: "bottom"});
-	$('a#add-item').tooltip({placement: "right"});
+	$('a.edit, a.trash').tooltip({placement: "top"});
+	$('a#add-item').tooltip({placement: "left"});
 	
 	// activeLinks plugin takes care of appropriately adding 'active' class to links inside navbars and sidebars
 	jQuery.fn.activeLinks = function() {

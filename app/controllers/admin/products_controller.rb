@@ -1,6 +1,6 @@
 class Admin::ProductsController < Admin::AdminController
   def index
-    @products = Product.where("company_id = #{current_company.id}").all(order: :created_at)
+    @products = Product.where("company_id = #{current_company.id}").all(order: :name)
   end
 
   def new
@@ -33,7 +33,7 @@ class Admin::ProductsController < Admin::AdminController
   
   def destroy
     Product.find(params[:id]).destroy
-    flash[:success] = "Product destroyed."
+    flash[:success] = "Product successfully deleted."
     respond_to do |format|
       format.html { redirect_to admin_products_path }
       format.js
