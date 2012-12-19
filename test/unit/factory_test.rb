@@ -3,8 +3,8 @@ require 'test_helper'
 class FactoryTest < ActiveSupport::TestCase
   setup do
     @supply_attributes = { supplies_attributes: {
-      "0" => { quantity: 321 },
-      "1" => { quantity: 31 }
+      "0" => { quantity: 321, supplied_on: '2012-12-19', product: products(:donut), store: stores(:mod_mumbai) },
+      "1" => { quantity: 31, supplied_on: '2012-12-19', product: products(:coffee), store: stores(:mod_mumbai) }
     }}
   end
   
@@ -36,9 +36,9 @@ class FactoryTest < ActiveSupport::TestCase
     assert factory.stores.include?(stores(:apple_store))
   end
   
-  test "should accept attribtues for supplies" do
+  test "should accept attributes for supplies" do
     factory = factories(:mod_factory)
-    assert_equal 0, factory.supplies.count
+
     factory.update_attributes(@supply_attributes)
     assert_equal 2, factory.supplies.count
   end
