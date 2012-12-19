@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   skip_before_filter :authorize
-  
+
   def new
+    redirect_to user_home if logged_in?
   end
 
   def create

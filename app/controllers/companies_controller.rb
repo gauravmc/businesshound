@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
   def new
     @company = Company.new
     @user = User.new
-  end  
+  end
   
   def create
     Company.creating_new = true
@@ -16,8 +16,7 @@ class CompaniesController < ApplicationController
         @user.company_id = @company.id
         @user.save(validate: false)
       end
-      redirect_to login_url, flash: {success: "Company #{@company.name} was successfully created. 
-                                      Start using BusinessHound now!"}
+      redirect_to login_url, flash: {success: "Company #{@company.name} was successfully created. Start using BusinessHound now!"}
     else
       render action: "new"
     end

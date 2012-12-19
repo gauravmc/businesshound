@@ -16,11 +16,12 @@ class Factory::SuppliesController < ApplicationController
     @supplies = []
     @store = Store.find(params[:store_id])
     @supplied_on = params[:factory][:supplied_on]
-    
-    params[:factory][:supplies_attributes].each_value.with_index do |attributes, index|
-      @supplies << @factory.supplies.build(store_id: @store.id,
-        product_id: @store.products[index].id,
-        quantity: make_validation_friendly(attributes[:quantity]),
+
+    @factory.products.each.with_index do |product, i|
+      @supplies << @factory.supplies.build(
+        store_id: @store.id,
+        product_id: product.id,
+        quantity: make_validation_friendly(params[:factory][:supplies_attributes][i.to_s][:quantity]),
         supplied_on: @supplied_on
       )
     end
@@ -62,7 +63,7 @@ class Factory::SuppliesController < ApplicationController
     @supplied_on = params[:date]
     @supplies = @factory.supplies.where(store_id: params[:store_id], supplied_on: params[:date]) || []
     if @supplies.empty?
-      @factory.products.count.times { @supplies << @factory.supplies.build }
+      @factory.products.each { |product| @supplies << @factory.supplies.build(product: product) }
       @form_options = { url: factory_supplies_path(store_id: params[:store_id]), method: :post }
     else
       @form_options = { url: factory_supply_path(params[:store_id]), method: :put }

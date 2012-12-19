@@ -17,10 +17,10 @@
 		$('#datepicker').datepicker().on('changeDate', function(e){
 			var date = new Date(e.date.valueOf());
 			var supplied_on = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-			$('#supplied-on').val(supplied_on);
+			$('.supplied-on').val(supplied_on);
 
 			$.ajax({
-				url: '/factory/supplies/fetch_form?store_id=<%= @store.id %>&amp;date=' + supplied_on,
+				url: '<%= fetch_form_factory_supplies_path %>?store_id=<%= @store.id %>&amp;date=' + supplied_on,
 				success: function(data) {
 					$('#supplies-form').html(data);
 				}

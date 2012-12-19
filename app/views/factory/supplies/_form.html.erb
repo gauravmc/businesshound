@@ -16,7 +16,7 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-			<% @supplies.each.with_index do |supply, index| %>
+			<% @supplies.each do |supply| %>
 		    <tr>
 		      <td><%= supply.product.name %></td>
 					<%= f.fields_for :supplies, supply do |builder| %>
@@ -26,6 +26,6 @@
 			<% end %>
 	  </tbody>
 	</table>
-	<%= f.hidden_field :supplied_on, value: supplied_on, id: 'supplied-on' %>
+	<%= f.hidden_field :supplied_on, value: supplied_on, class: 'supplied-on' %>
 	<%= f.submit "Add Supplies", class: "btn btn-success btn-large" %>
 <% end %>

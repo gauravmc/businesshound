@@ -12,6 +12,10 @@ module SessionsHelper
     cookies.delete(:remember_token)
     session.delete :user_id
   end
+
+  def logged_in_as_store_manager?
+    !current_user.nil? && current_user.user_type == 'store'
+  end
   
   def logged_in_as_factory_manager?
     !current_user.nil? && current_user.user_type == 'factory'
@@ -31,13 +35,9 @@ module SessionsHelper
   end
   
   def user_home
-    if logged_in?
-      return admin_path if current_user.type == 'admin'
-      return stores_path if current_user.type == 'store'
-      return factory_path if current_user.type == 'factory'
-    else
-      return login_url
-    end
+    return admin_path if current_user.type == 'admin'
+    return stores_path if current_user.type == 'store'
+    return factory_path if current_user.type == 'factory'
   end
   
   private
