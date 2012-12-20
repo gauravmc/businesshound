@@ -21,6 +21,7 @@
 		      <td><%= supply.product.name %></td>
 					<%= f.fields_for :supplies, supply do |builder| %>
 			      <td><%= builder.text_field :quantity, class: "input-small" %></td>
+			      <%= builder.hidden_field :product_id %>
 					<% end %>
 		    </tr>
 			<% end %>

@@ -5,7 +5,11 @@ class Supply < ActiveRecord::Base
   belongs_to :factory
   belongs_to :product
   belongs_to :store
-  
+
+  before_validation :make_quantity_validation_friendly
+
+  private
+
   def make_quantity_validation_friendly
     self.quantity = 0 if quantity.nil?
   end

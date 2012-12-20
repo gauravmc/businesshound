@@ -10,6 +10,27 @@ class Factory < ActiveRecord::Base
   has_and_belongs_to_many :stores, autosave: true
   
   accepts_nested_attributes_for :supplies
+
+  def has_supplied_to_store_on?(supplied_on, store_id)
+    supplies.where(store_id: store_id, supplied_on: supplied_on).any?
+  end
+
+  def find_supply_by_attributes(supplied_on, store_id, product_id)
+    supply = supplies.where(store_id: store_id, product_id: product_id, supplied_on: supplied_on).pop
+    supply.present? ? supply : false
+  end
+
+  def fetch_supplies(store_id, supplied_on)
+    supplies = []
+    products.each do |product|
+      supplies << if supply = find_supply_by_attributes(supplied_on, store_id, product.id)
+        supply
+      else
+        self.supplies.create(store_id: store_id, product_id: product.id, quantity: 0, supplied_on: supplied_on)
+      end
+    end
+    supplies
+  end
   
   def supplies_to?(store)
     stores.include? store

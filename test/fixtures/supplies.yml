@@ -14,3 +14,11 @@ zero:
   product_id: 2
   quantity: 0
   supplied_on: <%= Date.today %>
+
+three:
+  id: 3
+  factory_id: 1
+  store_id: 1
+  product_id: 3
+  quantity: 100
+  supplied_on: <%= Date.today %>

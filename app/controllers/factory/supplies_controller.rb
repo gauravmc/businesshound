@@ -18,16 +18,11 @@ class Factory::SuppliesController < ApplicationController
     @supplied_on = params[:factory][:supplied_on]
 
     @factory.products.each.with_index do |product, i|
-      @supplies << @factory.supplies.build(
-        store_id: @store.id,
-        product_id: product.id,
-        quantity: make_validation_friendly(params[:factory][:supplies_attributes][i.to_s][:quantity]),
-        supplied_on: @supplied_on
-      )
+      @supplies << @factory.supplies.build(params[:factory][:supplies_attributes][i.to_s].merge(store_id: @store.id, supplied_on: @supplied_on))
     end
     
     if @factory.save
-      redirect_to factory_supplies_path, flash: {success: "Supply items were added for #{@store.name}"}
+      redirect_to factory_supplies_path, flash: {success: "Supply items were added for #{@store.name}."}
     else
       render 'new'
     end
@@ -36,17 +31,16 @@ class Factory::SuppliesController < ApplicationController
   def edit
     @store = Store.find(params[:id])
     @supplied_on = Time.now.strftime("%Y-%m-%d")
-    @supplies = @factory.supplies.where(store_id: params[:id], supplied_on: Date.today)
+    @supplies = @factory.fetch_supplies(params[:id], Date.today)
   end
   
   def update
     @store = Store.find(params[:id])
     @supplied_on = params[:factory][:supplied_on]
     @supplies = @factory.supplies.where(store_id: @store.id, supplied_on: @supplied_on)
-    supplies_enum = params[:factory][:supplies_attributes].to_enum
-    
-    @supplies.each do |supply|
-      unless supply.update_attributes(quantity: make_validation_friendly(supplies_enum.next[1][:quantity]))
+
+    @supplies.each.with_index do |supply, i|
+      unless supply.update_attributes(params[:factory][:supplies_attributes][i.to_s])
         @factory.errors.clear
         @factory.errors.add(:supplies_attributes, "Supplies quantity should be a number")
       end
@@ -61,12 +55,13 @@ class Factory::SuppliesController < ApplicationController
 
   def fetch_form
     @supplied_on = params[:date]
-    @supplies = @factory.supplies.where(store_id: params[:store_id], supplied_on: params[:date]) || []
-    if @supplies.empty?
-      @factory.products.each { |product| @supplies << @factory.supplies.build(product: product) }
+
+    @supplies = if @factory.has_supplied_to_store_on?(@supplied_on, params[:store_id])
       @form_options = { url: factory_supplies_path(store_id: params[:store_id]), method: :post }
+      @factory.fetch_supplies(params[:store_id], params[:date])
     else
       @form_options = { url: factory_supply_path(params[:store_id]), method: :put }
+      @factory.products.map { |product| @factory.supplies.build(product: product) }
     end
   end
 

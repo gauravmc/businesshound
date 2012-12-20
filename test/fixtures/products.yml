@@ -11,15 +11,21 @@ ipad:
   name: iPad
   price: 499
   company_id: 1
-  
-donut:
+
+ipod:
   id: 3
+  name: iPod
+  price: 299
+  company_id: 1
+ 
+donut:
+  id: 4
   name: Donut
   price: 40.49
   company_id: 2
   
 coffee:
-  id: 4
+  id: 5
   name: Coffee
   price: 40
   company_id: 2

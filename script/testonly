@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+# $ script/testonly product
+# running: bundle exec testrb -Itest -I. test/api/product_api_test.rb test/api/product_image_api_test.rb test/api/product_search_engine_api_test.rb test/api/product_variant_api_test.rb etc etc etc...
+
+# Running individual test methods
+# $ script/testonly invoicing -n some_part_of_a_test_statement
+# running: bundle exec testrb -Itest -I. test/unit/invoicing_system_test.rb -n /some_part_of_a_test_statement/
+
+require_relative 'process_helper'
+
+args = ARGV
+if args.include? '-n'
+  tests_regex = args.slice!(args.index('-n')..args.size).drop(1).join('|')
+  command_suffix = " -n /#{tests_regex}/"
+end
+
+files_regex = args.join('|')
+files = Dir['test/**/*_test.rb'].select {|dir| dir =~ /#{files_regex}/ }
+
+command = command_prefix
+command << files.join(' ')
+command << command_suffix if command_suffix
+
+execute_command(files, command)
