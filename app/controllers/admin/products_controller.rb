@@ -1,6 +1,6 @@
 class Admin::ProductsController < Admin::AdminController
   def index
-    @products = Product.where("company_id = #{current_company.id}").all(order: :name)
+    @products = Product.where(company_id: current_company.id).order :name
   end
 
   def new

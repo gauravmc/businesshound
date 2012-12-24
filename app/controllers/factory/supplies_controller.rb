@@ -35,17 +35,21 @@ class Factory::SuppliesController < ApplicationController
   end
   
   def update
+    @supplies = []
     @store = Store.find(params[:id])
     @supplied_on = params[:factory][:supplied_on]
-    @supplies = @factory.supplies.where(store_id: @store.id, supplied_on: @supplied_on)
 
-    @supplies.each.with_index do |supply, i|
-      unless supply.update_attributes(params[:factory][:supplies_attributes][i.to_s])
-        @factory.errors.clear
-        @factory.errors.add(:supplies_attributes, "Supplies quantity should be a number")
+    Supply.transaction do
+      params[:factory][:supplies_attributes].values.each do |supply_attributes|
+        supply = @factory.supplies.where(store_id: @store.id, supplied_on: @supplied_on, product_id: supply_attributes[:product_id]).first
+        unless supply.update_attributes(quantity: supply_attributes[:quantity])
+          @factory.errors.clear
+          @factory.errors.add(:supplies_attributes, "Supplies quantity should be a number")
+        end
+        @supplies << supply
       end
     end
-        
+
     unless @factory.errors.any?
       redirect_to factory_supplies_path, flash: {success: "Supply items were added for #{@store.name}"}
     else

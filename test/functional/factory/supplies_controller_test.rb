@@ -4,41 +4,36 @@ class Factory::SuppliesControllerTest < ActionController::TestCase
   setup do
     @store = stores(:apple_store)
 
-    @valid_supply = { supplies_attributes: {
-      "0" => { quantity: 321, product_id: 1 },
-      "1" => { quantity: 31, product_id: 2 },
-      "2" => { quantity: 31, product_id: 3 }
+    @valid_supplies = { supplies_attributes: {
+      "0" => { quantity: 321, product_id: products(:iphone).id },
+      "1" => { quantity: 31, product_id: products(:ipad).id },
+      "2" => { quantity: 31, product_id: products(:ipod).id }
     }}
     
-    @invalid_supply = { supplies_attributes: {
-      "0" => { quantity: 'abc', product_id: 1 },
-      "1" => { quantity: 'foo', product_id: 2 },
-      "2" => { quantity: 31, product_id: 3 }
-    }}
-    
-    @empty_supply = { supplies_attributes: {
-      "0" => { quantity: nil, product_id: 1 },
-      "1" => { quantity: nil, product_id: 2 },
-      "2" => { quantity: nil, product_id: 3 }
+    @invalid_supplies = { supplies_attributes: {
+      "0" => { quantity: 'abc', product_id: products(:iphone).id },
+      "1" => { quantity: 'foo', product_id: products(:ipad).id },
+      "2" => { quantity: 31, product_id: products(:ipod).id }
     }}
   end
   
   test "should create valid supplies" do
     assert_difference('Supply.count', 3) do
-      post :create, factory: @valid_supply.merge(supplied_on: '2012-12-19'), store_id: @store.id
+      post :create, factory: @valid_supplies.merge(supplied_on: '2012-12-19'), store_id: @store.id
     end
     assert_equal '2012-12-19', Supply.last.supplied_on.to_s
+    assert_equal 321, Supply.where(product_id: products(:iphone).id).last.quantity
   end
   
   test "should not create invalid supplies" do
     assert_no_difference('Supply.count') do
-      post :create, factory: @invalid_supply.merge(supplied_on: Date.today), store_id: @store.id
+      post :create, factory: @invalid_supplies.merge(supplied_on: Date.today), store_id: @store.id
     end
   end
 
   test "should update to valid supplies" do
     assert_no_difference('Supply.count') do
-      put :update, factory: @valid_supply.merge(supplied_on: Date.today), id: @store.id
+      put :update, factory: @valid_supplies.merge(supplied_on: Date.today), id: @store.id
     end
     assert_equal 321, supplies(:one).quantity
     assert_equal 31, supplies(:zero).quantity
@@ -46,7 +41,7 @@ class Factory::SuppliesControllerTest < ActionController::TestCase
 
   test "should not update to invalid supplies" do
     assert_no_difference('Supply.count') do
-      put :update, factory: @invalid_supply.merge(supplied_on: Date.today), id: @store.id
+      put :update, factory: @invalid_supplies.merge(supplied_on: Date.today), id: @store.id
     end
     assert_equal 45, supplies(:one).quantity
     assert_equal 0, supplies(:zero).quantity

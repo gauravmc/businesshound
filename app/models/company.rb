@@ -6,5 +6,6 @@ class Company < ActiveRecord::Base
   
   has_many :users, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_many :factories, dependent: :destroy
   has_many :stores, dependent: :destroy
 end

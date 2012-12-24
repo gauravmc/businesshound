@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  store_id: 1
+  quantity: 1
+  left_on: 2012-12-21
+
+two:
+  store_id: 1
+  quantity: 1
+  left_on: 2012-12-21

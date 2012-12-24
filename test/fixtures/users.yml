@@ -1,41 +1,73 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 steve:
-  id: 1
   fullname: Steve Jobs
   email: sjobs@apple.com
   username: sjobs
   password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
   user_type: admin
-  company_id: 1
+  company: apple
   remember_token: <%= SecureRandom.urlsafe_base64 %>
   
 kevin:
-  id: 2
   fullname: Kevin Smith
   email: kevin@madoverdonuts.com
   username: kevin
   password_digest: <%= BCrypt::Password.create('sample') %>
   user_type: admin
-  company_id: 2
+  company: mod
   remember_token: <%= SecureRandom.urlsafe_base64 %>
-  
+
+apple_store_manager:
+  fullname:
+  email:
+  username: apple_store
+  password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
+  user_type: store
+  company: apple
+  remember_token: <%= SecureRandom.urlsafe_base64 %>
+
+mod_mumbai_store_manager:
+  fullname:
+  email:
+  username: mod_mumbai
+  password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
+  user_type: store
+  company: mod
+  remember_token: <%= SecureRandom.urlsafe_base64 %>  
+
 apple_factory_manager:
-  id: 3
   fullname:
   email:
   username: apple_factory
   password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
   user_type: factory
-  company_id: 1
+  company: apple
   remember_token: <%= SecureRandom.urlsafe_base64 %>
 
 mod_factory_manager:
-  id: 4
   fullname:
   email:
   username: mod_factory
   password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
   user_type: factory
-  company_id: 2
+  company: mod
+  remember_token: <%= SecureRandom.urlsafe_base64 %>
+
+apple_store_manager_two:
+  fullname:
+  email:
+  username: apple_store_two
+  password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
+  user_type: store
+  company: apple
+  remember_token: <%= SecureRandom.urlsafe_base64 %>
+
+apple_factory_manager_two:
+  fullname:
+  email:
+  username: apple_factory_two
+  password_digest: <%= BCrypt::Password.create('7sjy1bss') %>
+  user_type: factory
+  company: apple
   remember_token: <%= SecureRandom.urlsafe_base64 %>

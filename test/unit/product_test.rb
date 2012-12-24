@@ -23,7 +23,7 @@ class ProductTest < ActiveSupport::TestCase
     assert product.valid?
   end
   
-  test "product not valid without unique name for same company" do
+  test "does not save duplicate product" do
     product = Product.new(name: products(:iphone).name,
                           price: 12, 
                           company_id: companies(:apple).id)

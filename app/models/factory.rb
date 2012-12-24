@@ -1,13 +1,13 @@
 class Factory < ActiveRecord::Base
   validates :name, presence: { message: "Factory name is required" }
   validates :name, uniqueness: { scope: :company_id, case_sensitive: false, message: "%{value} already exists" }
-  validates_presence_of :stores, message: "Select at least one store for supply"
+  validates_presence_of :stores, message: "Select at least one store for supply", if: ->(factory) { factory.company.stores.any? }
   
   belongs_to :company
-  belongs_to :manager, class_name: 'User'
+  belongs_to :manager, class_name: 'User', dependent: :destroy
   has_many :products, through: :company, order: 'name ASC'
   has_many :supplies, dependent: :destroy
-  has_and_belongs_to_many :stores, autosave: true
+  has_and_belongs_to_many :stores
   
   accepts_nested_attributes_for :supplies
 

@@ -1,11 +1,11 @@
 <div class="span12">
 	<div id="add-store-box" class="shadow-box add-item-box">
-	<h2>Add Store</h2><br />
+	<h2>Add Store</h2>
 
 	<% if @store.errors.any? or @user.errors.any? %>
 	  <div class="alert alert-error">
 	    <ul>
-	    <% @store.errors.full_messages.each do |msg| %>
+	    <% @store.errors.each do |field, msg| %>
 	      <li><%= msg %></li>
 	    <% end %>
 	    <% @user.errors.full_messages.each do |msg| %>
@@ -42,7 +42,23 @@
 			  <%= f.password_field :password_confirmation, class: "input-xlarge" %>
 			</div>
 		<% end %>
-	  <div><br/>
+
+		<% if current_company.factories.any? %>
+			<div>
+		    <u><%= label_tag "Select factories which supply to this store" %></u>
+				<% current_company.factories.each do |factory| %>
+					<div>
+						<%= label_tag factory.name.parameterize.underscore,
+									check_box_tag("store[factories][]",
+										factory.id,
+										false) + factory.name,
+										class: "checkbox" %>
+				  </div>
+				<% end %>
+			</div>
+		<% end %>
+	  
+	  <br/><div>
 	    <%= f.submit "Add", class: "btn btn-success btn-large" %>
 	  </div>
 	<% end %>

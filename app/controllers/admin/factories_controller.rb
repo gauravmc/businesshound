@@ -1,6 +1,6 @@
 class Admin::FactoriesController < Admin::AdminController  
   def index
-    @factories = Factory.where("company_id = #{current_company.id}").all(order: :created_at)
+    @factories = Factory.where(company_id: current_company.id).order :name
   end
   
   def new
@@ -9,19 +9,18 @@ class Admin::FactoriesController < Admin::AdminController
   end
   
   def create
-    params[:factory][:stores].collect! { |store_name| Store.find_by_name(store_name) } unless params[:factory][:stores].nil?
+    params[:factory][:stores].collect! { |id| Store.find_by_id(id) } unless params[:factory][:stores].nil?
     
-    @factory = Factory.new params[:factory].merge(company_id: current_company.id)
-    @user = User.new params[:user].merge(user_type: "factory", company_id: current_company.id)
+    @factory = current_company.factories.build params[:factory]
+    @user = @factory.build_manager params[:user].merge(user_type: "factory", company: current_company)
 
-    if @factory.valid? & @user.valid?      
+    if @factory.valid? & @user.valid?
       @user.save validate: false
-      @factory.manager_id = @user.id
       @factory.save validate: false
       redirect_to admin_factories_path, flash: {success: "#{@factory.name} was successfully added."}
     else
       render action: "new"
-    end    
+    end
   end
   
   def edit
@@ -29,14 +28,14 @@ class Admin::FactoriesController < Admin::AdminController
   end
   
   def update
-    params[:factory][:stores].collect! { |store_name| Store.find_by_name(store_name) } unless params[:factory][:stores].nil?
+    params[:factory][:stores].collect! { |id| Store.find_by_id(id) } unless params[:factory][:stores].nil?
     
     @factory = Factory.find(params[:id])    
     
     if @factory.update_attributes(params[:factory])
       redirect_to admin_factories_path, flash: {success: "Factory was successfully updated."}
     else
-      render "edit"  
+      render "edit"
     end
   end
   

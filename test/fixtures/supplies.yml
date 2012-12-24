@@ -1,24 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 one:
-  id: 1
-  factory_id: 1
-  store_id: 1
-  product_id: 1
+  factory: apple_factory
+  store: apple_store
+  product: iphone
   quantity: 45
   supplied_on: <%= Date.today %>
 
 zero:
-  id: 2
-  factory_id: 1
-  store_id: 1
-  product_id: 2
+  factory: apple_factory
+  store: apple_store
+  product: ipad
   quantity: 0
   supplied_on: <%= Date.today %>
 
 three:
-  id: 3
-  factory_id: 1
-  store_id: 1
-  product_id: 3
+  factory: apple_factory
+  store: apple_store
+  product: ipod
   quantity: 100
   supplied_on: <%= Date.today %>

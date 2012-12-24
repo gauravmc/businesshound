@@ -9,6 +9,8 @@ en:
         password_digest: "Password"
       factory:
         supplies_attributes: ""
+      store:
+        supplies_attributes: ""
     errors:
       models:
         user:

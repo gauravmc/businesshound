@@ -5,7 +5,7 @@
 	<% if @store.errors.any? %>
 	  <div class="alert alert-error">
 	    <ul>
-	    <% @store.errors.full_messages.each do |msg| %>
+	    <% @store.errors.each do |field, msg| %>
 	      <li><%= msg %></li>
 	    <% end %>
 	    </ul>
@@ -17,8 +17,24 @@
 		<div>
 	    <%= f.label :name, "Store Name:" %>
 	    <%= f.text_field :name, class: "input-block-level" %>
-	  </div><br />
-	  <div>
+	  </div>
+
+		<% if current_company.stores.any? %>
+			<div>
+		    <u><%= label_tag "Select factories which supply to this store" %></u>
+				<% current_company.factories.each do |factory| %>
+					<div>
+						<%= label_tag factory.name.parameterize.underscore,
+									check_box_tag("store[factories][]",
+										factory.id,
+										@store.gets_supplies_by?(factory) ? true : false) + factory.name,
+										class: "checkbox" %>
+				  </div>
+				<% end %>
+			</div>
+		<% end %>
+
+	  <br /><div>
 	    <%= f.submit "Update", class: "btn btn-success btn-large" %>
 	  </div>
 	<% end %>

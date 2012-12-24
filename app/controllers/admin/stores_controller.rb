@@ -1,6 +1,6 @@
 class Admin::StoresController < Admin::AdminController  
   def index
-    @stores = Store.where("company_id = #{current_company.id}").all(order: :created_at)
+    @stores = Store.where(company_id: current_company.id).order :name
   end
 
   def new
@@ -9,8 +9,10 @@ class Admin::StoresController < Admin::AdminController
   end
   
   def create
-    @store = Store.new params[:store].merge(company_id: current_company.id)
-    @user = User.new params[:user].merge(user_type: "store", company_id: current_company.id)
+    params[:store][:factories].collect! { |id| Factory.find_by_id(id) } unless params[:store][:factories].nil?
+
+    @store = current_company.stores.build params[:store]
+    @user = @store.build_manager params[:user].merge(user_type: "store", company: current_company)
 
     if @store.valid? & @user.valid?
       @store.save(validate: false)
@@ -26,6 +28,8 @@ class Admin::StoresController < Admin::AdminController
   end
   
   def update
+    params[:store][:factories].collect! { |id| Factory.find_by_id(id) } unless params[:store][:factories].nil?
+
     @store = Store.find(params[:id])
 
     if @store.update_attributes(params[:store])

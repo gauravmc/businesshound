@@ -9,7 +9,7 @@ class FactoryTest < ActiveSupport::TestCase
   end
   
   test "factory attributes must not be empty" do
-    factory = Factory.new
+    factory = companies(:apple).factories.build
     assert factory.invalid?
     assert !factory.save
     assert factory.errors[:name].any?
@@ -41,5 +41,11 @@ class FactoryTest < ActiveSupport::TestCase
 
     factory.update_attributes(@supply_attributes)
     assert_equal 2, factory.supplies.count
+  end
+
+  test "manager destroyed when factory is destroyed" do
+    manager_id = users(:apple_factory_manager).id
+    factories(:apple_factory).destroy
+    assert !User.find_by_id(manager_id).present?
   end
 end
