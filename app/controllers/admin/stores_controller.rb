@@ -28,7 +28,11 @@ class Admin::StoresController < Admin::AdminController
   end
   
   def update
-    params[:store][:factories].collect! { |id| Factory.find_by_id(id) } unless params[:store][:factories].nil?
+    if params[:store][:factories].nil?
+      params[:store][:factories] = []
+    else
+      params[:store][:factories].collect! { |id| Factory.find_by_id(id) }
+    end
 
     @store = Store.find(params[:id])
 

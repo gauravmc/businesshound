@@ -19,7 +19,7 @@
 	    <%= f.text_field :name, class: "input-block-level" %>
 	  </div>
 
-		<% if current_company.stores.any? %>
+		<% if current_company.factories.any? %>
 			<div>
 		    <u><%= label_tag "Select factories which supply to this store" %></u>
 				<% current_company.factories.each do |factory| %>

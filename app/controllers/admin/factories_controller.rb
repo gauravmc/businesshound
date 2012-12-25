@@ -28,10 +28,14 @@ class Admin::FactoriesController < Admin::AdminController
   end
   
   def update
-    params[:factory][:stores].collect! { |id| Store.find_by_id(id) } unless params[:factory][:stores].nil?
+    if params[:factory][:stores].nil?
+      params[:factory][:stores] = []
+    else
+      params[:factory][:stores].collect! { |id| Store.find_by_id(id) }
+    end
     
     @factory = Factory.find(params[:id])    
-    
+
     if @factory.update_attributes(params[:factory])
       redirect_to admin_factories_path, flash: {success: "Factory was successfully updated."}
     else

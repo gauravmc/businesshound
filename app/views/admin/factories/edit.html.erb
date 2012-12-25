@@ -19,14 +19,14 @@
 	    <%= f.text_field :name, class: "input-block-level" %>
 	  </div>
 
-		<% if current_company.factories.any? %>	  
+		<% if current_company.stores.any? %>	  
 			<div>
 		    <u><%= label_tag "Select stores for supply" %></u>
 				<% current_company.stores.each do |store| %>
 					<div>
 						<%= label_tag store.name.parameterize.underscore,
 									check_box_tag("factory[stores][]",
-										store.name,
+										store.id,
 										@factory.supplies_to?(store) ? true : false) + store.name,
 										class: "checkbox" %>
 				  </div>

@@ -43,4 +43,12 @@ class Admin::FactoriesControllerTest < ActionController::TestCase
     assert flash[:success]
     assert factories(:apple_factory).supplies_to? stores(:apple_store_two)
   end
+
+   test "should not update factory if no supply store selected" do
+    factory = factories(:apple_factory)
+    post :update, id: factory.id, factory: { name: factory.name }
+
+    assert !flash[:success]
+    assert assigns(:factory).errors.any?
+  end 
 end
