@@ -36,7 +36,7 @@ module SessionsHelper
   
   def user_home
     return admin_path if current_user.type == 'admin'
-    return stores_path if current_user.type == 'store'
+    return store_path if current_user.type == 'store'
     return factory_path if current_user.type == 'factory'
   end
   

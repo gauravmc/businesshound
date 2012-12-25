@@ -1,6 +1,7 @@
 class Supply < ActiveRecord::Base  
   validates :quantity, numericality: { greater_than_or_equal_to: 0, message: "is not a valid number"}
   validates_presence_of :supplied_on, :factory, :product, :store
+  validates :product_id, uniqueness: { scope: :supplied_on, message: "Entry already made for given date." }  
   
   belongs_to :factory
   belongs_to :product
@@ -12,9 +13,5 @@ class Supply < ActiveRecord::Base
 
   def make_quantity_validation_friendly
     self.quantity = 0 if quantity.nil?
-  end
-
-  def make_quantity_user_friendly
-    self.quantity = nil if quantity.zero?
   end
 end

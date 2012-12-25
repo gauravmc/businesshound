@@ -5,7 +5,7 @@
 	<% @factory.stores.each do |store| %>
 		<div class="item">
 			<%= link_to '<i class="icon-white icon-shopping-cart"></i> '.html_safe + slice_name(store.name, 20),
-				get_factory_supply_path(store),
+				get_factory_supply_path(@factory, store, Date.today),
 				class: "btn btn-large btn-success" %>
 		</div>
 	<% end %>

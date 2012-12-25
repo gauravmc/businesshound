@@ -35,4 +35,5 @@ $(document).ready(function(){
 	
 	$('#navigation').activeLinks();
 	$('#admin-sidebar').activeLinks();
+	$('#store-sidebar').activeLinks();
 });

@@ -1,5 +1,9 @@
 module ApplicationHelper
-  def make_validation_friendly(value)
-    value == "" ? 0 : value
+  def user_friendly(value)
+    if value.present? && value.zero?
+    	nil
+    else
+    	value
+    end
   end
 end

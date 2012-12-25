@@ -61,10 +61,10 @@ class Factory::SuppliesController < ApplicationController
     @supplied_on = params[:date]
 
     @supplies = if @factory.has_supplied_to_store_on?(@supplied_on, params[:store_id])
-      @form_options = { url: factory_supplies_path(store_id: params[:store_id]), method: :post }
+      @form_options = { url: factory_supply_path(params[:store_id]), method: :put }
       @factory.fetch_supplies(params[:store_id], params[:date])
     else
-      @form_options = { url: factory_supply_path(params[:store_id]), method: :put }
+      @form_options = { url: factory_supplies_path(store_id: params[:store_id]), method: :post }
       @factory.products.map { |product| @factory.supplies.build(product: product) }
     end
   end

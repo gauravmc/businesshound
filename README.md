@@ -1,4 +1,4 @@
 BusinessHound
 =============
 
-Business Intelligence software SMBs
+Business Intelligence software for SMBs

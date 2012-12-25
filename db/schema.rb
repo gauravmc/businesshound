@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20121221175035) do
 
   create_table "stocks", :force => true do |t|
     t.integer  "store_id"
+    t.integer  "product_id"
     t.integer  "quantity"
     t.date     "left_on"
     t.datetime "created_at", :null => false

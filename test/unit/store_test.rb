@@ -24,4 +24,9 @@ class StoreTest < ActiveSupport::TestCase
     stores(:apple_store).destroy
     assert !User.find_by_id(manager_id).present?
   end
+
+  test "fetch_stocks creates 0 quantity stocks for missing products before returning" do
+    stocks = stores(:apple_store).fetch_stocks Date.today
+    assert_equal 0, stores(:apple_store).stocks.where(product_id: products(:ipad).id).pop.quantity
+  end
 end

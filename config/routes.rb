@@ -7,6 +7,10 @@ Businesshound::Application.routes.draw do
     get 'factory' => :index
   end
       
+  controller :store do
+    get 'store' => :index
+  end
+
   controller :sessions do
     get  'login' => :new
     post 'login' => :create
@@ -15,6 +19,10 @@ Businesshound::Application.routes.draw do
     
   resources :companies
   
+  namespace :admin do
+    resources :products, :stores, :factories
+  end
+
   namespace :factory do
     resources :supplies do
       collection do
@@ -23,8 +31,12 @@ Businesshound::Application.routes.draw do
     end
   end
   
-  namespace :admin do
-    resources :products, :stores, :factories
+  namespace :store do
+    resources :stocks do
+      collection do
+        get :fetch_form
+      end
+    end
   end
 
   # You can have the root of your site routed with "root"
