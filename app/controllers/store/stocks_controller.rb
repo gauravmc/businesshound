@@ -3,6 +3,7 @@ class Store::StocksController < ApplicationController
   layout false, only: :fetch_form
 
   def index
+    @date = params[:date] || Date.today
   end
 
   def new

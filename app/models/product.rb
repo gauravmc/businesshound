@@ -5,4 +5,5 @@ class Product < ActiveRecord::Base
 
   belongs_to :company
   has_many :supplies, dependent: :destroy
+  has_many :stocks, dependent: :destroy
 end

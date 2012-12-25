@@ -1,15 +1,40 @@
 <%= render 'store/sidebar', store: @store %>
 
 <div id="center" class="span9 shadow-box">
-  <div class="span10">
-    <%= render 'layouts/flash', flash: flash %>
-    <h4><%= @store.name %> Summary</h4>
-  </div>
-
   <div class="span2">
-    <div class="input-append date" id="datepicker" data-date="2012-12-12" data-date-format="yyyy-mm-dd">
-      <input size="16" type="text" value="2012-12-12" class="input-small" readonly>
+    <div class="input-append date" id="datepicker" data-date="<%= @date %>" data-date-format="yyyy-mm-dd">
+      <input size="16" type="text" value="<%= @date %>" class="input-small" readonly>
       <span class="add-on"><i class="icon-calendar"></i></span>
     </div>
-  </div>  
+  </div>
+
+  <div class="span10">
+    <%= render 'layouts/flash', flash: flash %>
+    <table align="center" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Old Stock</th>
+          <th>Today's Supplies</th>
+          <th>Total Stock</th>
+          <th>Left Over Stock</th>
+          <th>Sold</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @store.products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= old_stock = old_stock(product, @store, @date) %></td>
+            <td><%= supplies = todays_supplies(product, @store, @date) %></td>
+            <td><%= total_stock = old_stock + supplies %></td>
+            <td><%= left_over_stock = left_over_stock(product, @store, @date) %></td>
+            <td><%= sold = total_stock - left_over_stock %></td>
+            <td><%= "#{current_user.company.currency} #{sold * product.price}" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>    
+  </div>
 </div>
