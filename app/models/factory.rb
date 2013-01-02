@@ -5,7 +5,7 @@ class Factory < ActiveRecord::Base
   
   belongs_to :company
   belongs_to :manager, class_name: 'User', dependent: :destroy
-  has_many :products, through: :company, order: 'name ASC'
+  has_many :products, through: :company
   has_many :supplies, dependent: :destroy
   has_and_belongs_to_many :stores
   

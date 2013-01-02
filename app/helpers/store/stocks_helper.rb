@@ -1,6 +1,6 @@
 module Store::StocksHelper
 	def old_stock(product, store, date)
-		product.stocks.where(store_id: store.id, left_on: (format_date(date) - 1.day)).first.quantity
+		stock_by_date product, store, (format_date(date) - 1.day)
 	end
 
 	def todays_supplies(product, store, date)
@@ -8,14 +8,15 @@ module Store::StocksHelper
 	end
 
 	def left_over_stock(product, store, date)
-		product.stocks.where(store_id: store.id, left_on: format_date(date)).first.quantity
+		stock_by_date product, store, format_date(date)
 	end
 
 	def format_date(date)
-		if date.class != Date
-			DateTime.strptime(date, '%Y-%m-%d').to_date
-		else
-			date
-		end
+		date.is_a?(Date) ? date : Date.strptime(date, '%Y-%m-%d')
+	end
+
+	def stock_by_date(product, store, date)
+		stock = product.stocks.where(store_id: store.id, left_on: date).first
+		stock.present? ? stock.quantity : 0
 	end
 end

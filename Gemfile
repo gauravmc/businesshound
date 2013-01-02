@@ -6,7 +6,7 @@ gem 'carmen'
 gem 'capistrano'
 gem 'mysql2'
 gem 'jquery-rails'
-gem 'less-rails-bootstrap'
+gem 'money', git: 'git://github.com/Shopify/money.git'
 
 group :development do
 	gem 'debugger'

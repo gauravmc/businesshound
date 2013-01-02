@@ -36,4 +36,12 @@ class Store < ActiveRecord::Base
     end
     stocks
   end
+
+  def goods_supplied_on?(date)
+    supplies.where(supplied_on: date).any?
+  end
+
+  def stocks_entered_on?(date)
+    stocks.where(left_on: date).any?
+  end
 end

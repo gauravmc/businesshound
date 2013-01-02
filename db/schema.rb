@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221175035) do
+ActiveRecord::Schema.define(:version => 20121227224937) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(:version => 20121221175035) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.decimal  "price",      :precision => 10, :scale => 2
+    t.decimal  "price",      :precision => 8, :scale => 2
     t.integer  "company_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "stocks", :force => true do |t|
