@@ -19,6 +19,10 @@
     <div id="price-prepend" class="input-prepend" align="left">
     	<span class="add-on"><%= current_company.currency %></span><%= f.text_field :price %>
 		</div>
+  </div>
+  <div>
+    <%= f.label :kind, "Type", style: 'margin-top: 10px;' %>
+    <%= f.select :kind, {"Produced"=>"produced", "Traded"=>"traded"}, {}, class: 'input-block-level' %>
   </div><br />
   <div>
     <%= f.submit @product.new_record? ? "Add" : "Update", class: "btn btn-success btn-large" %>

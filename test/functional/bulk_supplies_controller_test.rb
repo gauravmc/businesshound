@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Factory::SuppliesControllerTest < ActionController::TestCase
+class BulkSuppliesControllerTest < ActionController::TestCase
   setup do
     @store = stores(:apple_store)
 

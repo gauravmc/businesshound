@@ -1,4 +1,4 @@
-class Store::StocksController < ApplicationController
+class BulkStocksController < ApplicationController
   before_filter :authorize_user_type, :load_store
   layout false, only: :fetch_form
 
@@ -20,7 +20,7 @@ class Store::StocksController < ApplicationController
     end
     
     if @store.save
-      redirect_to store_stocks_path, flash: {success: "Left-over stock items were added for #{@store.name}."}
+      redirect_to store_bulk_stocks_path(@store), flash: {success: "Left-over stock items were added for #{@store.name}."}
     else
       render 'new'
     end
@@ -32,6 +32,7 @@ class Store::StocksController < ApplicationController
   end
 
   def update
+    debugger
     @stocks = []
     @left_on = params[:store][:left_on]
 
@@ -47,7 +48,7 @@ class Store::StocksController < ApplicationController
     end
 
     unless @store.errors.any?
-      redirect_to store_stocks_path, flash: {success: "Left-over stock items were added for #{@store.name}"}
+      redirect_to store_bulk_stocks_path(@store), flash: {success: "Left-over stock items were added for #{@store.name}"}
     else
       render 'edit'
     end
@@ -57,10 +58,10 @@ class Store::StocksController < ApplicationController
     @left_on = params[:date]
 
     @stocks = if @store.has_entered_stock_on?(@left_on)
-      @form_options = { url: store_stock_path(@store), method: :put }
+      @form_options = { url: store_bulk_stocks_path(@store), method: :put }
       @store.fetch_stocks @left_on
     else
-      @form_options = { url: store_stocks_path, method: :post }
+      @form_options = { url: store_bulk_stocks_path(@store), method: :post }
       @store.products.map { |product| @store.stocks.build(product: product) }
     end    
   end
@@ -74,6 +75,6 @@ class Store::StocksController < ApplicationController
   private
 
   def load_store
-    @store = current_user.store
+    @store ||= Store.find(params[:store_id])
   end  
 end

@@ -1,4 +1,4 @@
-<%= render 'store/sidebar', store: @store %>
+<%= render 'stores/sidebar', store: @store %>
 
 <div id="center" class="span9 shadow-box">
   <div class="span2">
@@ -25,7 +25,7 @@
       $('.left-on').val(left_on);
 
       $.ajax({
-        url: '<%= fetch_form_store_stocks_path %>?date=' + left_on,
+        url: '<%= fetch_form_store_bulk_stocks_path(@store) %>?date=' + left_on,
         success: function(data) {
           $('#stocks-form').html(data);
         }

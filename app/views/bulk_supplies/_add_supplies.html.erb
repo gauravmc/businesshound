@@ -20,7 +20,7 @@
 			$('.supplied-on').val(supplied_on);
 
 			$.ajax({
-				url: '<%= fetch_form_factory_supplies_path %>?store_id=<%= @store.id %>&amp;date=' + supplied_on,
+				url: '<%= fetch_form_factory_bulk_supplies_path(@factory, store_id: @store.id) %>&amp;date=' + supplied_on,
 				success: function(data) {
 					$('#supplies-form').html(data);
 				}

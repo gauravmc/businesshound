@@ -1,4 +1,4 @@
-module Store::StocksHelper
+module BulkStocksHelper
 	def old_stock(product, store, date)
 		stock_by_date product, store, (format_date(date) - 1.day)
 	end

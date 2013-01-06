@@ -1,7 +1,7 @@
 <% if @factory.errors.any? %>
   <div class="alert alert-error">
     <ul>
-    <% @factory.errors.full_messages.each do |msg| %>
+    <% @factory.errors.each do |field, msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>

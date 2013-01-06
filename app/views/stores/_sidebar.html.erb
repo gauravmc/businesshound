@@ -2,13 +2,13 @@
   <div class="well sidebar-nav" style="padding: 8px 0;">
     <ul id="store-sidebar" class="nav nav-list">
       <li class="nav-header">Store Functions</li>
-			<li><%= link_to '<i class="icon-tasks"></i> Summary'.html_safe, store_stocks_path %></li>
+			<li><%= link_to '<i class="icon-tasks"></i> Summary'.html_safe, store_bulk_stocks_path %></li>
 			<li>
 				<%= link_to '<i class="icon-plus-sign"></i> Add Stocks'.html_safe,
-				store.has_entered_stock_on?(Date.today) ? edit_store_stock_path(store) : new_store_stock_path %>
+				store.has_entered_stock_on?(Date.today) ? edit_store_bulk_stocks_path(store) : new_store_bulk_stock_path(store) %>
 			</li>
 			<li class="divider"></li>
-			<li><%= link_to '<i class="icon-off"></i> Log Out'.html_safe, logout_url, method: "delete" %></li>
+			<li><%= link_to '<i class="icon-off"></i> Log Out'.html_safe, logout_url, method: :delete %></li>
     </ul>
   </div> <!-- /well -->
 </div>

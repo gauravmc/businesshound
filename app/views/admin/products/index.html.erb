@@ -8,9 +8,10 @@
       <thead>
         <tr>
           <th>#</th>
-          <th width="20%" style="text-align:center;">Product Image</th>
-          <th width="45%">Product Name</th>
-          <th>Price</th>
+          <th width="25%" style="text-align:center;">Product Image</th>
+          <th width="40%">Product Name</th>
+          <th>Kind</th>
+          <th width="15%">Price</th>
           <th width="5%"></th>
           <th width="5%"></th>
         </tr>
@@ -21,6 +22,7 @@
           <td><%= i + 1 %></td>
           <td style="text-align:center;"><img /></td>
           <td><%= product.name %></td>
+          <td><%= product.kind.capitalize %></td>
           <td><%= "#{current_user.company.currency} #{product.price}" %></td>
           <td style="text-align:center;"><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_admin_product_path(product), class: "edit", title: "Edit" %></td>
           <td style="text-align:center;"><%= link_to '<i class="icon-trash"></i>'.html_safe, admin_product_path(product), class: "trash", title: "Delete", method: :delete, confirm: "Are you sure?" %></td>

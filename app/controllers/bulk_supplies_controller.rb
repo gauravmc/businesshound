@@ -1,5 +1,5 @@
-class Factory::SuppliesController < ApplicationController
-  before_filter :authorize_user_type, :load_factory
+class BulkSuppliesController < ApplicationController
+  before_filter :authorize_user_type, :load_factory, :load_store
   layout false, only: :fetch_form
 
   def index
@@ -7,14 +7,12 @@ class Factory::SuppliesController < ApplicationController
   
   def new
     @supplies = []
-    @store = Store.find(params[:store_id])
     @supplied_on = Time.now.strftime("%Y-%m-%d")
     @factory.products.each { |product| @supplies << @factory.supplies.build(product: product) }
   end
     
   def create
     @supplies = []
-    @store = Store.find(params[:store_id])
     @supplied_on = params[:factory][:supplied_on]
 
     @factory.products.each.with_index do |product, i|
@@ -22,21 +20,19 @@ class Factory::SuppliesController < ApplicationController
     end
     
     if @factory.save
-      redirect_to factory_supplies_path, flash: {success: "Supply items were added for #{@store.name}."}
+      redirect_to factory_bulk_supplies_url(@factory), flash: {success: "Supply items were added for #{@store.name}."}
     else
       render 'new'
     end
   end
   
   def edit
-    @store = Store.find(params[:id])
     @supplied_on = Time.now.strftime("%Y-%m-%d")
-    @supplies = @factory.fetch_supplies(params[:id], Date.today)
+    @supplies = @factory.fetch_supplies(params[:store_id], Date.today)
   end
   
   def update
     @supplies = []
-    @store = Store.find(params[:id])
     @supplied_on = params[:factory][:supplied_on]
 
     Supply.transaction do
@@ -51,7 +47,7 @@ class Factory::SuppliesController < ApplicationController
     end
 
     unless @factory.errors.any?
-      redirect_to factory_supplies_path, flash: {success: "Supply items were added for #{@store.name}"}
+      redirect_to factory_bulk_supplies_url(@factory), flash: {success: "Supply items were added for #{@store.name}"}
     else
       render 'edit'
     end
@@ -60,11 +56,11 @@ class Factory::SuppliesController < ApplicationController
   def fetch_form
     @supplied_on = params[:date]
 
-    @supplies = if @factory.has_supplied_to_store_on?(@supplied_on, params[:store_id])
-      @form_options = { url: factory_supply_path(params[:store_id]), method: :put }
+    @supplies = if @factory.has_supplied_to_store_on?(@supplied_on, @store)
+      @form_options = { url: factory_bulk_supplies_path(@factory, store_id: @store.id), method: :put }
       @factory.fetch_supplies(params[:store_id], params[:date])
     else
-      @form_options = { url: factory_supplies_path(store_id: params[:store_id]), method: :post }
+      @form_options = { url: factory_bulk_supplies_path(@factory, store_id: @store.id), method: :post }
       @factory.products.map { |product| @factory.supplies.build(product: product) }
     end
   end
@@ -78,6 +74,10 @@ class Factory::SuppliesController < ApplicationController
   private
 
   def load_factory
-    @factory = current_user.factory
+    @factory ||= Factory.find(params[:factory_id])
+  end
+
+  def load_store
+    @store ||= Store.find(params[:store_id]) if params[:store_id].present?
   end
 end

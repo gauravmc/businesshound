@@ -3,12 +3,26 @@ Businesshound::Application.routes.draw do
     get 'admin' => :index
   end
   
-  controller :factory do
-    get 'factory' => :index
+  resources :factories, only: :show do
+    resources :bulk_supplies, only: [:index, :new] do
+      collection do
+        post :create
+        get :edit
+        put :update
+        get :fetch_form
+      end
+    end
   end
       
-  controller :store do
-    get 'store' => :index
+  resources :stores, only: :show do
+    resources :bulk_stocks, only: [:index, :new] do
+      collection do
+        post :create
+        get :edit
+        put :update
+        get :fetch_form        
+      end
+    end
   end
 
   controller :sessions do
@@ -21,22 +35,6 @@ Businesshound::Application.routes.draw do
   
   namespace :admin do
     resources :products, :stores, :factories
-  end
-
-  namespace :factory do
-    resources :supplies do
-      collection do
-        get :fetch_form
-      end
-    end
-  end
-  
-  namespace :store do
-    resources :stocks do
-      collection do
-        get :fetch_form
-      end
-    end
   end
 
   # You can have the root of your site routed with "root"

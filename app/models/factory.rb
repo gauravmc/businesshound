@@ -11,8 +11,8 @@ class Factory < ActiveRecord::Base
   
   accepts_nested_attributes_for :supplies
 
-  def has_supplied_to_store_on?(supplied_on, store_id)
-    supplies.where(store_id: store_id, supplied_on: supplied_on).any?
+  def has_supplied_to_store_on?(supplied_on, store)
+    supplies.where(store_id: store.id, supplied_on: supplied_on).any?
   end
 
   def find_supply_by_attributes(supplied_on, store_id, product_id)

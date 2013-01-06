@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Store::StocksControllerTest < ActionController::TestCase
+class StocksControllerTest < ActionController::TestCase
 	setup	do
 		@valid_stocks = { stocks_attributes: {
 			  "0" => { quantity: 50, product_id: products(:iphone).id },
