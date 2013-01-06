@@ -4,11 +4,13 @@ class Admin::ProductsControllerTest < ActionController::TestCase
   setup do
     @product_attributes = {
       name: "Khari",
+      kind: 'produced',
       price: 0.01
     }
     
     @update = {
       name: "Soap",
+      kind: 'traded',
       price: 1.01
     }
   end

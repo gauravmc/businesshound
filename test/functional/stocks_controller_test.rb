@@ -1,7 +1,9 @@
 require 'test_helper'
 
-class StocksControllerTest < ActionController::TestCase
+class BulkStocksControllerTest < ActionController::TestCase
 	setup	do
+		@store = stores(:apple_store)
+
 		@valid_stocks = { stocks_attributes: {
 			  "0" => { quantity: 50, product_id: products(:iphone).id },
 			  "1" => { quantity: 100, product_id: products(:ipad).id },
@@ -21,7 +23,7 @@ class StocksControllerTest < ActionController::TestCase
 
 	test "creates new left over stock when valid attributes supplied" do
 		assert_difference('Stock.count', 3) do
-   		post :create, store: @valid_stocks
+   		post :create, store_id: @store.id, store: @valid_stocks
    	end
 
    	assert flash[:success]
@@ -29,19 +31,18 @@ class StocksControllerTest < ActionController::TestCase
 
   test "does not create left over stock records with invalid attributes" do
 		assert_no_difference('Stock.count', 3) do
-   		post :create, store: @invalid_stocks
+   		post :create, store_id: @store.id, store: @invalid_stocks
    	end
 
    	assert !flash[:success]
   end
 
   test "updates stock quantity when supplied with valid attributes" do
-  	store = stores(:apple_store)
-  	store.fetch_stocks Date.today
-		put :update, id: store.id, store: @valid_stocks.merge!(left_on: Date.today)
+  	@store.fetch_stocks Date.today
+		put :update, store_id: @store.id, store: @valid_stocks.merge!(left_on: Date.today)
 
 		assert flash[:success]
-    assert_equal 100, store.stocks.where(product_id: products(:ipad).id).pop.quantity
+    assert_equal 100, @store.stocks.where(product_id: products(:ipad).id).pop.quantity
   end
 
   def setup

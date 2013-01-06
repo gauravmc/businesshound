@@ -10,7 +10,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product price must be positive" do
-    product = Product.new(name: "My Product name")
+    product = Product.new(name: "My Product name", kind: 'produced')
     product.price = -1
     assert product.invalid?
     assert_equal "should be more than 0", product.errors[:price].join('; ')
@@ -33,7 +33,8 @@ class ProductTest < ActiveSupport::TestCase
 
   test "product valid without unique name for different company" do
     product = Product.new(name: products(:iphone).name,
-                          price: 12, 
+                          price: 12,
+                          kind: 'traded',
                           company_id: companies(:mod).id)
     assert product.save
     assert_equal "", product.errors[:name].join('; ')
