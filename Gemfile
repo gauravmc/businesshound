@@ -1,15 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 gem 'bcrypt-ruby'
 gem 'carmen'
 gem 'capistrano'
-gem 'mysql2'
 gem 'jquery-rails'
 # gem 'money', git: 'git://github.com/Shopify/money.git'
+gem 'paperclip', '3.4.0'
 
 group :development do
 	gem 'debugger'
+end
+
+group :test, :development do
+	gem 'mysql2'
 end
 
 # Gems used only for assets and not required
