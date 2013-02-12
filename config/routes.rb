@@ -23,6 +23,14 @@ Businesshound::Application.routes.draw do
         get :fetch_form        
       end
     end
+    resources :bulk_supplies, only: [:index, :new] do
+      collection do
+        post :create
+        get :edit
+        put :update
+        get :fetch_form
+      end
+    end
   end
 
   controller :sessions do

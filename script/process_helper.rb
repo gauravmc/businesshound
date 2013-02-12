@@ -29,7 +29,7 @@ def command_prefix
   elsif spin_running?
     "spin push "
   else
-    "bundle exec testrb -Itest -I. "
+    "ruby -Itest "
   end
 end
 

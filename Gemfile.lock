@@ -38,7 +38,6 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
     carmen (0.2.13)
-    cocaine (0.4.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -80,12 +79,6 @@ GEM
     net-ssh (2.6.3)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    paperclip (3.4.0)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.4.0)
-      mime-types
     pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.3)
@@ -153,7 +146,6 @@ DEPENDENCIES
   debugger
   jquery-rails
   mysql2
-  paperclip (= 3.4.0)
   pg
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)

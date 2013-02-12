@@ -1,10 +1,11 @@
-module BulkStocksHelper
+module StoresHelper
 	def old_stock(product, store, date)
 		stock_by_date product, store, (format_date(date) - 1.day)
 	end
 
 	def todays_supplies(product, store, date)
-		product.supplies.where(store_id: store.id, supplied_on: format_date(date)).first.quantity
+		supply = product.supplies.where(store_id: store.id, supplied_on: format_date(date)).first
+		supply.present? ? supply.quantity : 0		
 	end
 
 	def left_over_stock(product, store, date)

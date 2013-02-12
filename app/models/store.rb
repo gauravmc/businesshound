@@ -10,7 +10,7 @@ class Store < ActiveRecord::Base
   has_many :stocks, dependent: :destroy
   has_and_belongs_to_many :factories
 
-  accepts_nested_attributes_for :stocks
+  accepts_nested_attributes_for :stocks, :supplies
 
   def gets_supplies_by?(factory)
   	factories.include? factory
@@ -18,6 +18,10 @@ class Store < ActiveRecord::Base
 
   def has_entered_stock_on?(date)
     stocks.where(left_on: date).any?
+  end
+
+  def has_entered_supplies_on?(supplied_on)
+    supplies.where(store_id: id, supplied_on: supplied_on, factory_id: nil).any?
   end
 
   def find_stock_by_attributes(left_on, product_id)
@@ -37,11 +41,32 @@ class Store < ActiveRecord::Base
     stocks
   end
 
+  def find_supply_by_attributes(supplied_on, product_id)
+    supply = supplies.where(store_id: id, product_id: product_id, supplied_on: supplied_on, factory_id: nil).pop
+    supply.present? ? supply : false
+  end
+
+  def fetch_supplies(store_id, supplied_on)
+    supplies = []
+    products.traded.each do |product|
+      supplies << if supply = find_supply_by_attributes(supplied_on, product.id)
+        supply
+      else
+        self.supplies.create(product_id: product.id, quantity: 0, supplied_on: supplied_on)
+      end
+    end
+    supplies
+  end
+
   def goods_supplied_on?(date)
     supplies.where(supplied_on: date).any?
   end
 
   def stocks_entered_on?(date)
     stocks.where(left_on: date).any?
+  end
+
+  def products_eligible_for_supply_entry
+    products.traded
   end
 end
