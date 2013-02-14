@@ -5,12 +5,6 @@ gem 'bcrypt-ruby'
 gem 'carmen'
 gem 'capistrano'
 gem 'jquery-rails'
-# gem 'money', git: 'git://github.com/Shopify/money.git'
-gem 'paperclip', '3.4.0'
-
-group :development do
-	gem 'debugger'
-end
 
 group :test, :development do
 	gem 'mysql2'
@@ -36,3 +30,5 @@ end
 group :test do
 	gem 'test-unit'
 end
+
+gem 'debugger'

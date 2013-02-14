@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 	default_scope order('name ASC')
+	scope :produced, where(kind: 'produced')
+	scope :traded, where(kind: 'traded')
 
   validates :name, :price, presence: true
   validates :price, numericality: { greater_than: 0, message: "should be more than 0"}

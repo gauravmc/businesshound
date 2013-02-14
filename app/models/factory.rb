@@ -5,9 +5,10 @@ class Factory < ActiveRecord::Base
   
   belongs_to :company
   belongs_to :manager, class_name: 'User', dependent: :destroy
-  has_many :products, through: :company
+  has_many :products, through: :company, conditions: { kind: 'produced' }
   has_many :supplies, dependent: :destroy
   has_and_belongs_to_many :stores
+  alias_method :products_eligible_for_supply_entry, :products
   
   accepts_nested_attributes_for :supplies
 

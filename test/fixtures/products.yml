@@ -4,23 +4,28 @@ iphone:
   name: iPhone
   price: 599.99
   company: apple
+  kind: produced
 
 ipad:
   name: iPad
   price: 499
   company: apple
+  kind: produced
 
 ipod:
   name: iPod
   price: 299
   company: apple
+  kind: produced
  
 donut:
   name: Donut
   price: 40.49
   company: mod
+  kind: produced
   
 coffee:
   name: Coffee
   price: 40
   company: mod
+  kind: produced

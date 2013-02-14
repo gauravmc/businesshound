@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
   def show
-    redirect_to store_bulk_stocks_url(params[:id])
+    @store = Store.find(params[:id])
+    @date = params[:date] || Date.today
   end
 end

@@ -18,9 +18,9 @@ class BulkStocksController < ApplicationController
     @store.products.each.with_index do |product, i|
       @stocks << @store.stocks.build(params[:store][:stocks_attributes][i.to_s].merge(left_on: @left_on))
     end
-    
+
     if @store.save
-      redirect_to store_bulk_stocks_path(@store), flash: {success: "Left-over stock items were added for #{@store.name}."}
+      redirect_to store_path(@store), flash: {success: "Left-over stock items for #{@left_on.to_date.strftime('%B %d, %Y')} were added for #{@store.name}."}
     else
       render 'new'
     end
@@ -32,7 +32,6 @@ class BulkStocksController < ApplicationController
   end
 
   def update
-    debugger
     @stocks = []
     @left_on = params[:store][:left_on]
 
@@ -48,7 +47,7 @@ class BulkStocksController < ApplicationController
     end
 
     unless @store.errors.any?
-      redirect_to store_bulk_stocks_path(@store), flash: {success: "Left-over stock items were added for #{@store.name}"}
+      redirect_to store_path(@store), flash: {success: "Left-over stock items for #{@left_on.to_date.strftime('%B %d, %Y')} were added for #{@store.name}"}
     else
       render 'edit'
     end

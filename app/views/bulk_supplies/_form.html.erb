@@ -1,13 +1,14 @@
-<% if @factory.errors.any? %>
+<% if @supplier.errors.any? %>
   <div class="alert alert-error">
     <ul>
-    <% @factory.errors.each do |field, msg| %>
+    <% @supplier.errors.each do |field, msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
   </div>
 <% end %>
-<%= form_for(@factory, form_options) do |f| %>
+<div style="text-align:center;">
+<%= form_for(@supplier, form_options) do |f| %>
 	<table align="center" class="table table-striped">
 	  <thead>
 	    <tr>
@@ -30,3 +31,4 @@
 	<%= f.hidden_field :supplied_on, value: supplied_on, class: 'supplied-on' %>
 	<%= f.submit "Add Supplies", class: "btn btn-success btn-large" %>
 <% end %>
+</div>
