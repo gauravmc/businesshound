@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'bcrypt-ruby'
-gem 'carmen'
 gem 'capistrano'
 gem 'jquery-rails'
+gem 'thin'
 
 group :test, :development do
 	gem 'mysql2'
@@ -25,10 +25,6 @@ end
 
 group :production do
 	gem 'pg'
-end
-
-group :test do
-	gem 'test-unit'
 end
 
 gem 'debugger'

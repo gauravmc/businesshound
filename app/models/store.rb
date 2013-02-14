@@ -8,6 +8,7 @@ class Store < ActiveRecord::Base
   has_many :products, through: :company
   has_many :supplies, dependent: :destroy
   has_many :stocks, dependent: :destroy
+  has_many :journal_entries, dependent: :destroy
   has_and_belongs_to_many :factories
 
   accepts_nested_attributes_for :stocks, :supplies

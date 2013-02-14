@@ -31,6 +31,7 @@ Businesshound::Application.routes.draw do
         get :fetch_form
       end
     end
+    resources :journal_entries
   end
 
   controller :sessions do

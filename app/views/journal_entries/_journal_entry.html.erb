@@ -1,0 +1,6 @@
+<tr id='<%= "journal_entry_#{journal_entry.id}" %>'>
+  <td><%= journal_entry.message %></td>
+  <td><%= "#{current_user.company.currency} #{journal_entry.amount}" %></td>
+  <td><%= journal_entry.kind.capitalize %></td>
+  <td><%= link_to '<i class="icon-trash"></i>'.html_safe, store_journal_entry_path(@store, journal_entry), class: "trash", title: "Delete", method: :delete, remote: true,confirm: "Are you sure?" %></td>
+</tr>

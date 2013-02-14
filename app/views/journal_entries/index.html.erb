@@ -1,0 +1,30 @@
+<%= render 'stores/sidebar', store: @store %>
+
+<div id="center" class="span9 shadow-box">
+  <div class="span2">
+    <div class="input-append date" id="datepicker" data-date="<%= @occured_on %>" data-date-format="yyyy-mm-dd">
+      <input size="16" type="text" value="<%= @occured_on %>" class="input-small" readonly>
+      <span class="add-on"><i class="icon-calendar"></i></span>
+    </div>
+  </div>
+
+  <div id="journal_entry_content" class="span10">
+    <%= link_to 'New Entry', new_store_journal_entry_path(@store), remote: true, id: 'new-entry', class: 'btn btn-primary', style: 'float:right;' %><br/><br/><br/>
+
+    <table id="journal_entries" align="center" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Message</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @journal_entries.each do |entry| %>
+          <%= render entry %>
+        <% end %>
+      </tbody>
+    </table>    
+  </div>
+</div>

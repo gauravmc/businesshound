@@ -1,0 +1,8 @@
+$('.alert').remove();
+<% if @journal_entry.errors.any? %>
+	$('#journal_entry_content').prepend('<%= j render("layouts/flash", flash: flash) %>');
+<% else %>
+	$('#new_journal_entry').remove();
+	$('#new-entry').show();
+	$('#journal_entries tbody').append('<%= j render(@journal_entry) %>').children(':last').hide().fadeIn();
+<% end %>
