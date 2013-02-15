@@ -41,7 +41,7 @@ Businesshound::Application.routes.draw do
     delete 'logout' => :destroy
   end
     
-  resource :companies
+  resources :companies
   
   namespace :admin do
     resources :products, :stores, :factories

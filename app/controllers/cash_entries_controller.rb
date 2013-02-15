@@ -7,7 +7,7 @@ class CashEntriesController < ApplicationController
 	end
 
 	def new
-		@cash_entry = @store.cash_entries.build(made_on: Date.today)
+		@cash_entry = @store.cash_entries.build(made_on: @made_on)
 	end
 
 	def create
@@ -41,7 +41,7 @@ class CashEntriesController < ApplicationController
 	private
 
 	def load_store
-    @made_on = params[:date] || Date.today
+    @made_on = date
 		@store = Store.find(params[:store_id])
 	end
 end

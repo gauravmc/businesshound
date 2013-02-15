@@ -10,7 +10,6 @@ class BulkSuppliesController < ApplicationController
   
   def new
     @supplies = []
-    @supplied_on = Time.now.strftime("%Y-%m-%d")
     supplier_products.each { |product| @supplies << supplier.supplies.build(product: product) }
   end
     
@@ -30,7 +29,6 @@ class BulkSuppliesController < ApplicationController
   end
   
   def edit
-    @supplied_on = Time.now.strftime("%Y-%m-%d")
     @supplies = supplier.fetch_supplies(params[:store_id], Date.today)
   end
   
@@ -57,8 +55,6 @@ class BulkSuppliesController < ApplicationController
   end
 
   def fetch_form
-    @supplied_on = params[:date]
-
     @supplies = if supplier_has_supplied_on?(@supplied_on)
       @form_options = { url: @supplier_bulk_supplies_path, method: :put }
       supplier.fetch_supplies(params[:store_id], params[:date])
@@ -77,6 +73,7 @@ class BulkSuppliesController < ApplicationController
   private
 
   def load_factory
+    @supplied_on = date
     @factory = Factory.find(params[:factory_id]) if params[:factory_id].present?
   end
 

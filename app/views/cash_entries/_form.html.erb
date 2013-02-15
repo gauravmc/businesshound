@@ -24,7 +24,7 @@
 				  	<%= render denomination_partial, f: f %>
 				  </tbody>
 				</table>
-				<%= f.hidden_field :made_on, value: made_on %>
+				<%= f.hidden_field :made_on %>
 				<%= f.submit "Add Entry", class: "btn btn-success btn-large" %>
 			<% end %>
 		</div>
@@ -34,10 +34,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#datepicker').datepicker().on('changeDate', function(e){
-			var date = new Date(e.date.valueOf());
-			var made_on = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-			$('#cash_entry_made_on').val(made_on);
-
+			var made_on = formatDate(e.date);
 			document.location = '<%= store_cash_entries_path(@store) %>?date=' + made_on;
 		});
 	});

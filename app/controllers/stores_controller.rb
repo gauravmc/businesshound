@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   def show
     @store = Store.find(params[:id])
-    @date = params[:date] || Date.today
+    @date = date
   end
 end

@@ -20,8 +20,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#datepicker').datepicker().on('changeDate', function(e){
-      var date = new Date(e.date.valueOf());
-      var left_on = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+      var left_on = formatDate(e.date);
       $('#store_left_on').val(left_on);
 
       $.ajax({

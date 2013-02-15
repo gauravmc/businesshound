@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-$(document).ready(function(){
+$(function(){
 	$('a.edit, a.trash').tooltip({placement: "top"});
 	$('a#add-item').tooltip({placement: "left"});
 	
@@ -35,3 +35,7 @@ $(document).ready(function(){
 	$('#admin-sidebar').activeLinks();
 	$('#store-sidebar').activeLinks();
 });
+
+function formatDate(date) {
+	return date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + date.getDate();
+}

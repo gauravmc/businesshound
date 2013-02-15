@@ -6,4 +6,8 @@ module ApplicationHelper
     	value
     end
   end
+
+  def date
+  	params[:date] || Time.now.strftime("%Y-%m-%d")
+  end
 end

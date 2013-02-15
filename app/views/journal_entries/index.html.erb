@@ -9,7 +9,7 @@
   </div>
 
   <div id="journal_entry_content" class="span10">
-    <%= link_to 'New Entry', new_store_journal_entry_path(@store), remote: true, id: 'new-entry', class: 'btn btn-primary', style: 'float:right;' %><br/><br/><br/>
+    <%= link_to 'New Entry', new_store_journal_entry_path(@store, date: @occured_on), remote: true, id: 'new-entry', class: 'btn btn-primary', style: 'float:right;' %><br/><br/><br/>
 
     <table id="journal_entries" align="center" class="table table-bordered">
       <thead>
@@ -28,3 +28,12 @@
     </table>    
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#datepicker').datepicker().on('changeDate', function(e){
+      var occured_on = formatDate(e.date);
+      document.location = '<%= store_journal_entries_path(@store) %>?date=' + occured_on;
+    });
+  });
+</script>

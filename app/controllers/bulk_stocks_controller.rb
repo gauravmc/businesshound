@@ -3,7 +3,6 @@ class BulkStocksController < ApplicationController
   layout false, only: :fetch_form
 
   def new
-    @left_on = Time.now.strftime("%Y-%m-%d")
     @stocks = @store.products.map { |product| @store.stocks.build(product: product) }
   end
 
@@ -23,7 +22,6 @@ class BulkStocksController < ApplicationController
   end
 
   def edit
-    @left_on = Time.now.strftime("%Y-%m-%d")
     @stocks = @store.fetch_stocks Date.today
   end
 
@@ -50,15 +48,13 @@ class BulkStocksController < ApplicationController
   end
 
   def fetch_form
-    @left_on = params[:date]
-
     @stocks = if @store.has_entered_stock_on?(@left_on)
       @form_options = { url: store_bulk_stocks_path(@store), method: :put }
       @store.fetch_stocks @left_on
     else
       @form_options = { url: store_bulk_stocks_path(@store), method: :post }
       @store.products.map { |product| @store.stocks.build(product: product) }
-    end    
+    end
   end
 
   protected
@@ -70,6 +66,7 @@ class BulkStocksController < ApplicationController
   private
 
   def load_store
+    @left_on = date
     @store ||= Store.find(params[:store_id])
   end  
 end
