@@ -2,10 +2,6 @@ class BulkStocksController < ApplicationController
   before_filter :authorize_user_type, :load_store
   layout false, only: :fetch_form
 
-  def index
-    @date = params[:date] || Date.today
-  end
-
   def new
     @left_on = Time.now.strftime("%Y-%m-%d")
     @stocks = @store.products.map { |product| @store.stocks.build(product: product) }

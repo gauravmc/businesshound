@@ -21,14 +21,14 @@
 			    <tr>
 			      <td><%= stock.product.name %></td>
 						<%= f.fields_for :stocks, stock do |builder| %>
-				      <td><%= builder.text_field :quantity, value: "#{user_friendly(stock.quantity)}", class: "input-small" %></td>
+				      <td><%= builder.text_field :quantity, value: "#{user_friendly(stock.quantity)}", class: "input-small", style: 'margin-bottom:0px;' %></td>
 				      <%= builder.hidden_field :product_id %>
 						<% end %>
 			    </tr>
 				<% end %>
 		  </tbody>
 		</table>
-		<%= f.hidden_field :left_on, value: left_on, class: 'left-on' %>
+		<%= f.hidden_field :left_on, value: left_on %>
 		<%= f.submit "Add Stocks", class: "btn btn-success btn-large" %>
 	<% end %>
 </div>

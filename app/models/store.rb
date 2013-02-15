@@ -9,6 +9,7 @@ class Store < ActiveRecord::Base
   has_many :supplies, dependent: :destroy
   has_many :stocks, dependent: :destroy
   has_many :journal_entries, dependent: :destroy
+  has_many :cash_entries, dependent: :destroy
   has_and_belongs_to_many :factories
 
   accepts_nested_attributes_for :stocks, :supplies
@@ -57,6 +58,10 @@ class Store < ActiveRecord::Base
       end
     end
     supplies
+  end
+
+  def has_entered_denominations_on?(date)
+    cash_entries.find_by_made_on(date).present?
   end
 
   def goods_supplied_on?(date)

@@ -21,14 +21,14 @@
 		    <tr>
 		      <td><%= supply.product.name %></td>
 					<%= f.fields_for :supplies, supply do |builder| %>
-			      <td><%= builder.text_field :quantity, class: "input-small" %></td>
+			      <td><%= builder.text_field :quantity, class: "input-small", style: 'margin-bottom:0px;' %></td>
 			      <%= builder.hidden_field :product_id %>
 					<% end %>
 		    </tr>
 			<% end %>
 	  </tbody>
 	</table>
-	<%= f.hidden_field :supplied_on, value: supplied_on, class: 'supplied-on' %>
+	<%= f.hidden_field :supplied_on, value: supplied_on, id: 'supplier_supplied_on' %>
 	<%= f.submit "Add Supplies", class: "btn btn-success btn-large" %>
 <% end %>
 </div>

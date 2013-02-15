@@ -15,7 +15,7 @@ Businesshound::Application.routes.draw do
   end
       
   resources :stores, only: :show do
-    resources :bulk_stocks, only: [:index, :new] do
+    resource :bulk_stocks, only: :new do
       collection do
         post :create
         get :edit
@@ -31,7 +31,8 @@ Businesshound::Application.routes.draw do
         get :fetch_form
       end
     end
-    resources :journal_entries
+    resources :journal_entries, except: :show
+    resource :cash_entries
   end
 
   controller :sessions do
@@ -40,7 +41,7 @@ Businesshound::Application.routes.draw do
     delete 'logout' => :destroy
   end
     
-  resources :companies
+  resource :companies
   
   namespace :admin do
     resources :products, :stores, :factories

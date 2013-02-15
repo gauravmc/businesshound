@@ -11,8 +11,7 @@ class JournalEntriesController < ApplicationController
 	end
 
 	def create
-    @occured_on = params[:date] || Date.today		
-		@journal_entry = @store.journal_entries.build(params[:journal_entry].merge(occured_on: @occured_on))
+		@journal_entry = @store.journal_entries.build(params[:journal_entry])
 		flash[:failure] = "Entry could not be saved." unless @journal_entry.save
 	end
 

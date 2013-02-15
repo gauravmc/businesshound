@@ -1,0 +1,6 @@
+<% CashEntry::CURRENCIES.each do |currency| %>
+<tr>
+	<td><%= f.label currency, currency.to_s.titleize %></td>
+	<td><%= f.text_field currency, class: 'input-small', style: 'margin-bottom:0px;' %></td>
+</tr>
+<% end %>

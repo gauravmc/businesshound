@@ -1,0 +1,44 @@
+<%= render 'stores/sidebar', store: @store %>
+
+<div id="center" class="span9 shadow-box">
+  <div class="span2">
+    <div class="input-append date" id="datepicker" data-date="<%= @made_on %>" data-date-format="yyyy-mm-dd">
+      <input size="16" type="text" value="<%= @made_on %>" class="input-small" readonly>
+      <span class="add-on"><i class="icon-calendar"></i></span>
+    </div>
+  </div>
+
+  <div class="span10">
+    <%= render 'layouts/flash', flash: flash %>
+
+		<div style="text-align:center;">
+			<%= form_for(@cash_entry, form_options) do |f| %>
+				<table align="center" class="table table-striped">
+				  <thead>
+				    <tr>
+				      <th>Currency Amount</th>
+				      <th>Quantity</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<%= render denomination_partial, f: f %>
+				  </tbody>
+				</table>
+				<%= f.hidden_field :made_on, value: made_on %>
+				<%= f.submit "Add Entry", class: "btn btn-success btn-large" %>
+			<% end %>
+		</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#datepicker').datepicker().on('changeDate', function(e){
+			var date = new Date(e.date.valueOf());
+			var made_on = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+			$('#cash_entry_made_on').val(made_on);
+
+			document.location = '<%= store_cash_entries_path(@store) %>?date=' + made_on;
+		});
+	});
+</script>

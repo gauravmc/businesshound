@@ -1,0 +1,6 @@
+<% @cash_entry.denomination.each do |currency, value| %>
+<tr>
+	<td><%= f.label currency, currency.to_s.titleize %></td>
+	<td><%= f.text_field currency, value: value, class: 'input-small', style: 'margin-bottom:0px;' %></td>
+</tr>
+<% end %>

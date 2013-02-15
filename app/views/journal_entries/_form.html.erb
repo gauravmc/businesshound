@@ -4,5 +4,6 @@
     	<span class="add-on"><%= current_company.currency %></span><%= f.text_field :amount, class: 'input-small' %>
 		</div>
     <%= f.select :kind, {"Debit"=>"debit", "Credit"=>"credit"}, {}, class: 'input-small' %>&nbsp;
+    <%= f.hidden_field :occured_on %>
     <%= f.submit "Add", class: "btn btn-success" %>
 <% end %>

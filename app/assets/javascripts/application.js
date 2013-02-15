@@ -21,9 +21,7 @@ $(document).ready(function(){
 	
 	// activeLinks plugin takes care of appropriately adding 'active' class to links inside navbars and sidebars
 	jQuery.fn.activeLinks = function() {
-		var url = window.location.href;
-		url = url.substr(url.indexOf("/", 10));
-		link_tag = this.find("a[href='" + url + "']");
+		link_tag = this.find("a[href='" + window.location.pathname + "']");
 		link_tag.parent('li').addClass("active");
 		
 		if(!this.hasClass('black'))
