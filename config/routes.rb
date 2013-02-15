@@ -15,7 +15,7 @@ Businesshound::Application.routes.draw do
   end
       
   resources :stores, only: :show do
-    resource :bulk_stocks, only: :new do
+    resources :bulk_stocks, only: :new do
       collection do
         post :create
         get :edit

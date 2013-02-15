@@ -16,7 +16,8 @@ class CompaniesController < ApplicationController
         @user.company_id = @company.id
         @user.save(validate: false)
       end
-      redirect_to login_url, flash: {success: "Company #{@company.name} was successfully created. Start using BusinessHound now!"}
+      log_in @user
+      redirect_to user_home, flash: {success: "Company #{@company.name} was successfully created. Start using BusinessHound now!"}
     else
       render action: "new"
     end

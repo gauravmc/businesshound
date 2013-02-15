@@ -6,12 +6,10 @@
 				<%= link_to '<i class="icon-list"></i> Summary'.html_safe, store_path(store) %>
 			</li>
 			<li>
-				<%= link_to '<i class="icon-plus-sign"></i> Add Closing Stock'.html_safe,
-				store.has_entered_stock_on?(@left_on || Date.today) ? edit_store_bulk_stocks_path(store) : new_store_bulk_stock_path(store) %>
+				<%= link_to '<i class="icon-plus-sign"></i> Add Closing Stock'.html_safe, store.has_entered_stock_on?(@left_on || Date.today) ? edit_store_bulk_stocks_path(store) : new_store_bulk_stock_path(store) %>
 			</li>
 			<li>
-				<%= link_to '<i class="icon-plus-sign"></i> Add Trading Supplies'.html_safe,
-				store.has_entered_supplies_on?(@supplied_on || Date.today) ? edit_store_bulk_supplies_path(store) : new_store_bulk_supply_path(store) %>
+				<%= link_to '<i class="icon-plus-sign"></i> Add Trading Supplies'.html_safe, store.has_entered_supplies_on?(@supplied_on || Date.today) ? edit_store_bulk_supplies_path(store) : new_store_bulk_supply_path(store) %>
 			</li>
 			<li>
 				<%= link_to '<i class="icon-tasks"></i> Journal Entries'.html_safe, store_journal_entries_path(store) %>

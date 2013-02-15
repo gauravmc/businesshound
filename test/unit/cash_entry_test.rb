@@ -19,7 +19,6 @@ class CashEntryTest < ActiveSupport::TestCase
 
 	test "create formats denomination and saves it as hash" do
 		entry = CashEntry.create(@cash_entry_attributes)
-		debugger
 		assert_equal 0, entry.denomination[:hundred]
 		assert_equal 30, entry.denomination[:five_hundred]
 		assert_equal 0, entry.denomination[:fifty]

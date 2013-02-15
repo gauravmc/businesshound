@@ -20,7 +20,6 @@ class CompaniesControllerTest < ActionController::TestCase
     assert_difference ['Company.count', 'User.count'] do
       post :create, company: @company_attributes, user: @user_attributes
     end
-    assert_redirected_to login_path
+    assert_redirected_to admin_path
   end
-  
 end
