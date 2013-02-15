@@ -4,11 +4,7 @@ gem 'rails', '3.2.12'
 gem 'bcrypt-ruby'
 gem 'capistrano'
 gem 'jquery-rails'
-gem 'thin'
-
-group :test, :development do
-	gem 'mysql2'
-end
+gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,8 +19,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :production do
-	gem 'pg'
+group :development do
+	gem 'thin'
+  gem 'capistrano'
 end
 
+gem 'unicorn'
 gem 'debugger'
