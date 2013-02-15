@@ -5,6 +5,7 @@ gem 'bcrypt-ruby'
 gem 'capistrano'
 gem 'jquery-rails'
 gem 'mysql2'
+gem 'less-rails-bootstrap'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -14,7 +15,6 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer'
-  gem 'twitter-bootstrap-rails', '2.1.9'
 
   gem 'uglifier', '>= 1.0.3'
 end
