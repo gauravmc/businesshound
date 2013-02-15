@@ -25,4 +25,7 @@ group :development do
 end
 
 gem 'unicorn'
-gem 'debugger'
+
+group :development, :test do
+	gem 'debugger'
+end
