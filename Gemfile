@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'bcrypt-ruby'
-gem 'capistrano'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'less-rails-bootstrap'
