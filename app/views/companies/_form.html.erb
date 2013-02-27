@@ -21,7 +21,7 @@
 	<div class="control-group">
     <%= f.label :currency, "Currency Symbol", class: "control-label" %>
     <div class="controls">
-    	<%= f.select :currency, {"₹"=>"₹","$"=>"$","€"=>"€","£"=>"£"} %>
+    	<%= f.select :currency, {"Rs."=>"Rs.","$"=>"$","€"=>"€","£"=>"£"} %>
 		</div>
   </div>
 	<%= fields_for @user do |f| %>
