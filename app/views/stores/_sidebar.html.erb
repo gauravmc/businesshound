@@ -15,7 +15,7 @@
 				<%= link_to '<i class="icon-tasks"></i> Journal Entries'.html_safe, store_journal_entries_path(store) %>
 			</li>
 			<li>
-				<%= link_to "&nbsp;#{current_company.currency}&nbsp;&nbsp; Cash Entry".html_safe, store.has_entered_denominations_on?(@made_on || Date.today) ? edit_store_cash_entries_path(store) : new_store_cash_entries_path(store) %>
+				<%= link_to "&nbsp;$&nbsp;&nbsp;Cash Entry".html_safe, store.has_entered_denominations_on?(@made_on || Date.today) ? edit_store_cash_entries_path(store) : new_store_cash_entries_path(store) %>
 			</li>
 			<li class="divider"></li>
 			<li>
