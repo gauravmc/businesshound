@@ -15,6 +15,7 @@ server "192.81.222.241", :app, :web, :db, :primary => true
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:update_code", "deploy:migrate"
 after "deploy:restart", "deploy:cleanup"
+after "deploy:restart", "unicorn:restart"
 
 
 # if you're still using the script/reaper helper you will need
