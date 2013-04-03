@@ -15,8 +15,25 @@ server "192.81.222.241", :app, :web, :db, :primary => true
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:update_code", "deploy:migrate"
 after "deploy:restart", "deploy:cleanup"
-after "deploy:restart", "unicorn:restart"
 
+namespace :unicorn do
+	desc "Zero-downtime restart of Unicorn"
+	task :restart do
+		run "/etc/init.d/unicorn_businesshound restart"
+	end
+
+	desc "Start Unicorn"
+	task :start do
+		run "/etc/init.d/unicorn_businesshound start"
+	end
+
+	desc "Stop Unicorn"
+	task :stop do
+		run "/etc/init.d/unicorn_businesshound stop"
+	end
+end
+
+after "deploy:restart", "unicorn:restart"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
