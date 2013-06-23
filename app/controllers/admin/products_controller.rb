@@ -39,4 +39,11 @@ class Admin::ProductsController < Admin::AdminController
       format.js
     end
   end
+
+  def sort
+    params[:product].each.with_index do |id, i|
+      current_company.products.update_all({ position: i + 1 }, { id: id })
+    end
+    render nothing: true
+  end
 end

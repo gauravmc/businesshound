@@ -44,7 +44,12 @@ Businesshound::Application.routes.draw do
   resources :companies
   
   namespace :admin do
-    resources :products, :stores, :factories
+    resources :products do
+      collection do
+        put :sort
+      end
+    end
+    resources :stores, :factories
   end
 
   # You can have the root of your site routed with "root"
