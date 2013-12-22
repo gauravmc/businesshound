@@ -8,7 +8,7 @@ development:
   database: businesshound
   host: 127.0.0.1
   encoding: utf8
-  port: 13306
+  port: 3306
   username: root
   password:
 # Warning: The database defined as "test" will be erased and
@@ -19,7 +19,7 @@ test:
   database: businesshound_test
   host: 127.0.0.1
   encoding: utf8
-  port: 13306
+  port: 3306
   username: root
   password:
 
