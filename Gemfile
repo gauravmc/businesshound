@@ -28,5 +28,6 @@ end
 gem 'unicorn'
 
 group :development, :test do
-	gem 'debugger'
+	gem 'byebug'
+	gem 'pry-byebug'
 end
