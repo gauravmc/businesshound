@@ -41,7 +41,7 @@ stderr_path "/home/gaurav/businesshound/shared/log/unicorn.stderr.log"
 stdout_path "/home/gaurav/businesshound/shared/log/unicorn.stdout.log"
 
 before_exec do |server|
-  ENV['BUNDLE_GEMFILE'] = "#{working_directory}/Gemfile"
+  ENV['BUNDLE_GEMFILE'] = "/home/gaurav/businesshound/current/Gemfile"
 end
 
 # combine Ruby 2.0.0dev or REE with "preload_app true" for memory savings
