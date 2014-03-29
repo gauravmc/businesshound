@@ -37,8 +37,12 @@ pid "/home/gaurav/businesshound/shared/pids/unicorn.pid"
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,
 # so prevent them from going to /dev/null when daemonized here:
-stderr_path "/home/gaurav/businesshound/shared/log/unicorn.log"
-stdout_path "/home/gaurav/businesshound/shared/log/unicorn.log"
+stderr_path "/home/gaurav/businesshound/log/unicorn.log"
+stdout_path "/home/gaurav/businesshound/log/unicorn.log"
+
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{working_directory}/Gemfile"
+end
 
 # combine Ruby 2.0.0dev or REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
