@@ -22,7 +22,8 @@ end
 
 group :development do
 	gem 'thin'
-  gem 'capistrano'
+  gem 'capistrano', '~> 3.1'
+  gem 'capistrano-rbenv', '~> 2.0'
 end
 
 gem 'unicorn'
