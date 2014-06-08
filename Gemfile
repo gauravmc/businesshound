@@ -31,6 +31,8 @@ end
 gem 'unicorn'
 
 group :development, :test do
-	gem 'byebug'
-	gem 'pry-byebug'
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-debugger'
+  gem 'pry-stack_explorer'
 end
