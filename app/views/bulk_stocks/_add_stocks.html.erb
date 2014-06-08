@@ -21,7 +21,6 @@
   $(document).ready(function(){
     $('#datepicker').datepicker().on('changeDate', function(e){
       var left_on = formatDate(e.date);
-      $('#store_left_on').val(left_on);
 
       $.ajax({
         url: '<%= fetch_form_store_bulk_stocks_path(@store) %>?date=' + left_on,

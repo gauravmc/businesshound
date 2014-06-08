@@ -2,6 +2,7 @@
   <div class="well" style="padding: 8px 0;">
     <ul id="admin-sidebar" class="nav nav-list">
       <li class="nav-header">Company Actions</li>
+			<li><%= link_to '<i class="icon-list"></i> Summary'.html_safe, admin_path %></li>
 			<li><%= link_to '<i class="icon-barcode"></i> Products'.html_safe, admin_products_path %></li>
 			<li><%= link_to '<i class="icon-shopping-cart"></i> Stores'.html_safe, admin_stores_path %></li>
 			<li><%= link_to '<i class="icon-home"></i> Factories'.html_safe, admin_factories_path %></li>

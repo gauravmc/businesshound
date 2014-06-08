@@ -38,5 +38,5 @@ $(function(){
 });
 
 function formatDate(date) {
-	return date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + date.getDate();
+	return date.toISOString().substr(0, 10);
 }

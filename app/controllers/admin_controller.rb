@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
   def index
-    redirect_to admin_products_path
+    @stores = Store.all
+    @store = @stores.find {|s| s.id == params[:store_id].to_i} || @stores.first
+    @date = date
   end
 end

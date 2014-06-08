@@ -1,0 +1,33 @@
+<% if store.stocks_entered_on?(format_date(date)) %>
+  <table align="center" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Old Stock</th>
+        <th>Today's Supplies</th>
+        <th>Total Stock</th>
+        <th>Left Over Stock</th>
+        <th>Sold</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% store.products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= old_stock = old_stock(product, store, date) %></td>
+          <td><%= supplies = todays_supplies(product, store, date) %></td>
+          <td><%= total_stock = old_stock + supplies %></td>
+          <td><%= left_over_stock = left_over_stock(product, store, date) %></td>
+          <td><%= sold = total_stock - left_over_stock %></td>
+          <td><%= "#{current_user.company.currency} #{sold * product.price}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% elsif !flash.any? %>
+  <div class="alert alert-info">
+    Summary would be available for this store when the closing stock has been entered.
+  </div>
+<% end %>
+
