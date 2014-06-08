@@ -3,7 +3,7 @@ class BulkStocksController < ApplicationController
   layout false, only: :fetch_form
 
   def new
-    @stocks = @store.products.map { |product| @store.stocks.build(product: product) }
+    @stocks = @store.products.map { |product| @store.stocks.build(product: product, left_on: @left_on) }
   end
 
   def create
@@ -53,7 +53,7 @@ class BulkStocksController < ApplicationController
       @store.fetch_stocks @left_on
     else
       @form_options = { url: store_bulk_stocks_path(@store), method: :post }
-      @store.products.map { |product| @store.stocks.build(product: product) }
+      @store.products.map { |product| @store.stocks.build(product: product, left_on: @left_on) }
     end
   end
 

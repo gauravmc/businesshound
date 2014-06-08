@@ -13,6 +13,7 @@
 		  <thead>
 		    <tr>
 		      <th>Product Name</th>
+		      <th>Supply</th>
 		      <th>Quantity</th>
 		    </tr>
 		  </thead>
@@ -20,6 +21,7 @@
 				<% @stocks.each do |stock| %>
 			    <tr>
 			      <td><%= stock.product.name %></td>
+            <td><%= stock.supply_quantity %></td>
 						<%= f.fields_for :stocks, stock do |builder| %>
 				      <td><%= builder.text_field :quantity, value: "#{user_friendly(stock.quantity)}", class: "input-small", style: 'margin-bottom:0px;' %></td>
 				      <%= builder.hidden_field :product_id %>

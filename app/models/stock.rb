@@ -8,6 +8,12 @@ class Stock < ActiveRecord::Base
 
 	before_validation :make_quantity_validation_friendly
 
+  def supply_quantity
+    product.supplies.where(supplied_on: left_on).inject(0) do |num, supply|
+      supply.quantity + num
+    end
+  end
+
   private
 
   def make_quantity_validation_friendly
