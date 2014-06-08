@@ -20,13 +20,11 @@
       <%= link_to "BusinessHound", new_company_path, class: 'brand' %>
       <div class="nav-collapse collapse">
         <p class="navbar-text pull-right login-button">
-          <%= link_to '<i class="icon-off"></i> Log In'.html_safe, login_path, class: 'btn' unless logged_in? %>
-          <%= link_to '<i class="icon-off"></i> Log Out'.html_safe, logout_path, method: :delete, class: 'btn' if logged_in? %>
+          <%= link_to 'Log In'.html_safe, login_path, class: 'btn' unless logged_in? %>
+          <%= link_to 'Log Out'.html_safe, logout_path, method: :delete, class: 'btn' if logged_in? %>
         </p>
         <ul class="nav">
           <li class="active"><%= link_to 'Home', logged_in? ? user_home : login_path %></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
