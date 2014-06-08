@@ -4,7 +4,7 @@ gem 'rails', '3.2.17'
 gem 'bcrypt-ruby'
 gem 'jquery-rails'
 gem 'mysql2'
-gem 'less-rails-bootstrap'
+gem 'less-rails-bootstrap', '2.3.0'
 gem 'newrelic_rpm'
 gem 'acts_as_list'
 
