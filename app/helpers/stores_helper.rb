@@ -13,7 +13,7 @@ module StoresHelper
 	end
 
 	def format_date(date)
-		date.is_a?(Date) ? date : Date.strptime(date, '%Y-%m-%d')
+		date.is_a?(Date) ? date : Date.strptime(date, '%d-%m-%Y')
 	end
 
 	def stock_by_date(product, store, date)
